@@ -1,0 +1,70 @@
+@import "variables";
+
+@media (min-width: map_get($grid-breakpoints, md)) {
+  #menu {
+    height: $menu-height-md;
+    padding-left: $x-margin-md;
+    padding-right: $x-margin-md;
+    background-color: $secondary;
+    color: $primary;
+    font-family: $font-family-h;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    padding-left: auto;
+    padding-right: auto;
+    top: 0;
+
+    * {
+      background-color: inherit;
+      color: inherit;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .nav-item {
+      margin: 0.5rem;
+      font-size: inherit;
+    }
+
+    button{
+      text-decoration: none;
+      font-size: 1.4rem;
+    }
+
+    #submenu {
+      font-size: 1rem;
+      padding-left: $x-margin-md;
+      padding-right: $x-margin-md;
+    }
+
+    #dropdown {
+      &:focus-within,
+      &:hover {
+        div {
+          display: block;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+
+          * {
+            display: inherit;
+          }
+        }
+      }
+
+      * {
+        display: none;
+      }
+
+      button {
+        display: block;
+      }
+    }
+  }
+}

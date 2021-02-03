@@ -5,11 +5,9 @@ import Routes from "./components/Routes";
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 

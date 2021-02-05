@@ -54,16 +54,36 @@
             display: inline;
           }
         }
+
+        &:hover {
+          -webkit-animation: slide-right 0.5s
+            cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
       }
 
       &:focus-within,
       &:hover {
         #submenu {
-          display: block;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          max-height: $menu-height-lg * 2;
           position: absolute;
           top: 100%;
           left: 0;
           width: 100%;
+          -webkit-animation: scale-in-ver-top 0.5s both;
+          animation: scale-in-ver-top 0.5s both;
+        }
+
+        :not(:hover) {
+          #submenu {
+            -webkit-animation: scale-out-ver-top 0.5s
+              cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+            animation: scale-out-ver-top 0.5s
+              cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+          }
         }
       }
 

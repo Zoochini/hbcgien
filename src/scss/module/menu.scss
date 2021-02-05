@@ -1,19 +1,21 @@
 @import "variables";
 
-@media (min-width: map_get($grid-breakpoints, md)) {
+@media (max-width: $grid-breakpoints-lg) {
+}
+
+@media (min-width: $grid-breakpoints-lg) {
   #menu {
-    height: $menu-height-md;
-    padding-left: $x-margin-md;
-    padding-right: $x-margin-md;
+    height: $menu-height-lg;
+    padding-left: $x-margin-lg;
+    padding-right: $x-margin-lg;
     background-color: $secondary;
     color: $primary;
     font-family: $font-family-h;
-    font-size: 1.4rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: sticky;
-    padding-left: auto;
-    padding-right: auto;
     top: 0;
 
     * {
@@ -29,23 +31,23 @@
     .nav-item {
       margin: 0.5rem;
       font-size: inherit;
-    }
 
-    button{
-      text-decoration: none;
-      font-size: 1.4rem;
-    }
-
-    #submenu {
-      font-size: 1rem;
-      padding-left: $x-margin-md;
-      padding-right: $x-margin-md;
+      > svg {
+        display: inline !important;
+        fill: $primary;
+      }
     }
 
     #dropdown {
+      #submenu {
+        font-size: 1rem;
+        padding-left: $x-margin-lg;
+        padding-right: $x-margin-lg;
+      }
+
       &:focus-within,
       &:hover {
-        div {
+        #submenu {
           display: block;
           position: absolute;
           top: 100%;
@@ -62,8 +64,17 @@
         display: none;
       }
 
-      button {
+      > button {
+        font-size: inherit;
         display: block;
+        text-decoration: none;
+        border: 0;
+        padding: 0;
+
+        * {
+          display: inline;
+          fill: $primary;
+        }
       }
     }
   }

@@ -8,15 +8,19 @@ $ternary: #d7d7d7 !default;
 
 /* Fonts */
 
-
-
 /* Sizes */
 
-$menu-height-md: 6rem;
+$menu-height-lg: 6rem;
+$menu-width-lg: 68.75rem;
 
-$x-margin-md: 25%;
+$x-margin-lg: calc((100% - #{$menu-width-lg}) / 2);
 $x-margin: 0;
 $content-width-md: 50%;
 
 /* Bootstrap Grid System */
 @import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+$grid-breakpoints-xs: map_get($grid-breakpoints, xs);
+$grid-breakpoints-sm: map_get($grid-breakpoints, sm);
+$grid-breakpoints-md: map_get($grid-breakpoints, md);
+$grid-breakpoints-lg: map_get($grid-breakpoints, lg);

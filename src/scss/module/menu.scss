@@ -31,11 +31,6 @@
     .nav-item {
       margin: 0.5rem;
       font-size: inherit;
-
-      > svg {
-        display: inline !important;
-        fill: $primary;
-      }
     }
 
     #dropdown {
@@ -43,6 +38,22 @@
         font-size: 1rem;
         padding-left: $x-margin-lg;
         padding-right: $x-margin-lg;
+      }
+
+      .nav-item {
+        display: flex;
+        justify-content: space-between;
+        width: calc(#{$menu-width-lg} / 4);
+        > * {
+          display: inline !important;
+        }
+        > svg {
+          align-self: end;
+          fill: $primary;
+          * {
+            display: inline;
+          }
+        }
       }
 
       &:focus-within,
@@ -53,10 +64,6 @@
           top: 100%;
           left: 0;
           width: 100%;
-
-          * {
-            display: inherit;
-          }
         }
       }
 

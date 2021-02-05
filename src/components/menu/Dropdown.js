@@ -21,7 +21,7 @@ function Dropdown({ children, value }) {
       <div id="submenu">
         {React.Children.map(children, (child) =>
           React.cloneElement(child, child.props, [
-            child.props.children,
+            <span>{child.props.children}</span>,
             <svg
               width="24"
               height="24"

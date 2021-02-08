@@ -1,10 +1,83 @@
 @import "variables";
 
-@media (max-width: $grid-breakpoints-lg) {
-}
+#menu {
+  height: $menu-height-lg;
+  background-color: $secondary;
+  color: $primary;
+  font-family: $font-family-h;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
 
-@media (min-width: $grid-breakpoints-lg) {
-  #menu {
+  @media (max-width: $grid-breakpoints-lg) {
+    height: 64px;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    #logo {
+      display: inline;
+      order: -1;
+    }
+
+    #collapseButton {
+      svg {
+        fill: $primary;
+      }
+
+      &:hover {
+        svg {
+          fill: blue;
+          path {
+            transition: d 0.2s;
+            d: path("M2,2 L8,8");
+          }
+        }
+      }
+    }
+
+    .collapsed {
+      display: inline;
+      pointer-events: none;
+    }
+
+    .notCollapsed {
+      pointer-events: auto;
+    }
+
+    .nav-item {
+      display: none;
+    }
+
+    &:focus-within {
+      #collapseButton {
+      }
+
+      .bottom {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-item {
+        display: inline;
+      }
+    }
+  }
+
+  @media (min-width: $grid-breakpoints-lg) {
+    #collapseButton {
+      display: none;
+      visibility: hidden;
+    }
+
     height: $menu-height-lg;
     padding-left: $x-margin-lg;
     padding-right: $x-margin-lg;
@@ -17,6 +90,10 @@
     justify-content: space-between;
     position: sticky;
     top: 0;
+
+    .bottom {
+      display: inherit;
+    }
 
     * {
       background-color: inherit;

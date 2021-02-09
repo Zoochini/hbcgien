@@ -1,6 +1,6 @@
 @import "variables";
 
-#menu {
+@mixin menu {
   height: $menu-height-lg;
   background-color: $secondary;
   color: $primary;
@@ -12,6 +12,90 @@
   position: sticky;
   top: 0;
 
+  * {
+    background-color: inherit;
+    color: inherit;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
+
+@mixin nav-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin dropdown {
+  #dropdown {
+    #submenu {
+      font-size: 1rem;
+      padding-left: $x-margin-lg;
+      padding-right: $x-margin-lg;
+    }
+
+    .nav-item {
+      @include nav-item;
+
+      > * {
+        display: inline !important;
+      }
+      > svg {
+        align-self: end;
+        fill: $primary;
+        * {
+          display: inline;
+        }
+      }
+
+      &:hover {
+        -webkit-animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both;
+        animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      }
+    }
+
+    &:focus-within,
+    &:hover {
+      #submenu {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: $menu-height-lg * 2;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        -webkit-animation: scale-in-ver-top 0.5s both;
+        animation: scale-in-ver-top 0.5s both;
+      }
+    }
+
+    * {
+      display: none;
+    }
+
+    > button {
+      @include noEffectButton;
+      font-size: inherit;
+      display: block;
+
+      * {
+        display: inline;
+        fill: $primary;
+      }
+    }
+  }
+}
+
+#menu {
+  @include menu;
+
+  /**
+   > 1100px 
+  */
   @media (max-width: $grid-breakpoints-lg) {
     height: 64px;
     flex-direction: column;
@@ -20,6 +104,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      padding: 8px;
       width: 100%;
     }
 
@@ -29,6 +114,11 @@
     }
 
     #collapseButton {
+      @include noEffectButton;
+
+      color: inherit;
+      background-color: inherit;
+
       svg {
         fill: $primary;
       }
@@ -36,10 +126,6 @@
       &:hover {
         svg {
           fill: blue;
-          path {
-            transition: d 0.2s;
-            d: path("M2,2 L8,8");
-          }
         }
       }
     }
@@ -59,50 +145,58 @@
 
     &:focus-within {
       #collapseButton {
+        //TO DO
+        // transform svg to menu to cross
       }
 
       .bottom {
         display: flex;
         flex-direction: column;
+        background-color: inherit;
+        color: inherit;
+        border: 0;
+        vertical-align: middle;
+        text-decoration: none;
+        font-family: inherit;
+        font-size: inherit;
+        width: 100%;
+        -webkit-animation: scale-in-ver-top 0.5s both;
+        animation: scale-in-ver-top 0.5s both;
+
+        .nav-item {
+          display: block;
+          @include nav-item;
+          margin-left: 1rem;
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
       }
 
-      .nav-item {
-        display: inline;
+      @include dropdown;
+      #dropdown {
+        &:hover,
+        &:focus-within {
+          #submenu {
+            top: 0%;
+            position: static;
+          }
+        }
       }
     }
   }
 
   @media (min-width: $grid-breakpoints-lg) {
+    @include menu;
+    padding-left: $x-margin-lg;
+    padding-right: $x-margin-lg;
+
     #collapseButton {
       display: none;
       visibility: hidden;
     }
 
-    height: $menu-height-lg;
-    padding-left: $x-margin-lg;
-    padding-right: $x-margin-lg;
-    background-color: $secondary;
-    color: $primary;
-    font-family: $font-family-h;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-
     .bottom {
       display: inherit;
-    }
-
-    * {
-      background-color: inherit;
-      color: inherit;
-      border: 0;
-      vertical-align: middle;
-      text-decoration: none;
-      font-family: inherit;
-      font-size: inherit;
     }
 
     .nav-item {
@@ -110,75 +204,10 @@
       font-size: inherit;
     }
 
+    @include dropdown;
     #dropdown {
-      #submenu {
-        font-size: 1rem;
-        padding-left: $x-margin-lg;
-        padding-right: $x-margin-lg;
-      }
-
       .nav-item {
-        display: flex;
-        justify-content: space-between;
         width: calc(#{$menu-width-lg} / 4);
-        > * {
-          display: inline !important;
-        }
-        > svg {
-          align-self: end;
-          fill: $primary;
-          * {
-            display: inline;
-          }
-        }
-
-        &:hover {
-          -webkit-animation: slide-right 0.5s
-            cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        }
-      }
-
-      &:focus-within,
-      &:hover {
-        #submenu {
-          display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          max-height: $menu-height-lg * 2;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          -webkit-animation: scale-in-ver-top 0.5s both;
-          animation: scale-in-ver-top 0.5s both;
-        }
-
-        :not(:hover) {
-          #submenu {
-            -webkit-animation: scale-out-ver-top 0.5s
-              cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-            animation: scale-out-ver-top 0.5s
-              cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-          }
-        }
-      }
-
-      * {
-        display: none;
-      }
-
-      > button {
-        font-size: inherit;
-        display: block;
-        text-decoration: none;
-        border: 0;
-        padding: 0;
-
-        * {
-          display: inline;
-          fill: $primary;
-        }
       }
     }
   }

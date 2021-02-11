@@ -1,0 +1,12 @@
+@import "variables";
+
+#content {
+  /** Screen < 1100px */
+  @media (max-width: $grid-breakpoints-lg) {
+    min-height: calc(100vh - #{$menu-height} - #{$footer-height});
+  }
+  /** Screen > 1100px */
+  @media (min-width: $grid-breakpoints-lg) {
+    min-height: calc(100vh - #{$menu-height-lg} - #{$footer-height});
+  }
+}

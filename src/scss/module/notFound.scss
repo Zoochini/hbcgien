@@ -1,0 +1,23 @@
+@import "variables";
+
+#content {
+  .notFound {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: $font-family-content;
+    
+    /** Screen < 1100px */
+    @media (max-width: $grid-breakpoints-lg) {
+      min-height: calc(100vh - #{$menu-height} - #{$footer-height});
+      font-size: 1.5rem;
+    }
+    /** Screen > 1100px */
+    @media (min-width: $grid-breakpoints-lg) {
+      min-height: calc(100vh - #{$menu-height-lg} - #{$footer-height});
+      font-size: 3rem;
+    }
+  }
+}

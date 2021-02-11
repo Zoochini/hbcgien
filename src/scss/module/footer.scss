@@ -1,0 +1,59 @@
+@import "variables";
+
+@mixin footer {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: $primary;
+  color: $secondary;
+  font-family: $font-family-f;
+  width: 100%;
+  min-height: $footer-height;
+}
+
+@mixin items {
+  a,
+  a:link,
+  a:visited {
+    text-decoration: none;
+    transition: all 0.3s;
+    margin: 0.3rem;
+    color: inherit;
+    border-left: solid 1px $secondary;
+    > svg,
+    > span {
+      transition: all 0.3s;
+      padding-left: 4px;
+      vertical-align: middle;
+      color: inherit;
+    }
+  }
+
+  a:hover#facebook {
+    color: #4867aa;
+    svg {
+      fill: #4867aa;
+    }
+  }
+
+  a:hover#instagram {
+    color: #833ab4;
+    svg {
+      fill: #833ab4;
+    }
+  }
+}
+
+#footer {
+  @include footer;
+  @include items;
+
+  @media (min-width: $grid-breakpoints-lg) {
+    padding-left: $x-margin-lg;
+    padding-right: $x-margin-lg;
+  }
+}

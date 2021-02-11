@@ -94,10 +94,10 @@
   @include menu;
 
   /**
-   > 1100px 
+   Screen > 1100px 
   */
   @media (max-width: $grid-breakpoints-lg) {
-    height: 64px;
+    height: $menu-height;
     flex-direction: column;
 
     .top {

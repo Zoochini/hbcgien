@@ -12,8 +12,11 @@ $ternary: #d7d7d7 !default;
 
 /* Sizes */
 
+$menu-height: 64px;
 $menu-height-lg: 6rem;
 $menu-width-lg: 68.75rem;
+
+$footer-height: 200px;
 
 $x-margin-lg: calc((100% - #{$menu-width-lg}) / 2);
 $x-margin: 0;

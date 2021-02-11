@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
@@ -6,13 +6,29 @@ import "../../scss/module/menu.scss";
 import CollapseButton from "./CollapseButton";
 
 function Menu(props) {
+  const [collapsed, setCollapsed] = useState("notCollapsed");
+
+  function handleClick(e) {
+    switch (collapsed) {
+      case "notCollapsed":
+        setCollapsed("collapsed");
+        break;
+      case "collapsed":
+        setCollapsed("notCollapsed");
+        break;
+      default:
+        setCollapsed("collapsed");
+        break;
+    }
+  }
+
   return (
     <nav id="menu">
       <div className="top">
-        <CollapseButton />
+        <CollapseButton collapsed={collapsed} handleClick={handleClick} />
         <Logo className="nav-item" />
       </div>
-      <div className="bottom">
+      <div className={`bottom ${collapsed}`}>
         <Link to="/" className="nav-item">
           Accueil
         </Link>

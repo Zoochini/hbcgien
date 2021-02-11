@@ -108,6 +108,32 @@
       width: 100%;
     }
 
+    .top > .collapsed {
+      .menu {
+        display: none;
+      }
+      .cross {
+        visibility: visible;
+        -webkit-animation: rotate-in-center 0.6s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: rotate-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both;
+      }
+    }
+
+    .top > .notCollapsed {
+      .menu {
+        visibility: visible;
+        -webkit-animation: rotate-in-center 0.6s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: rotate-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both;
+      }
+      .cross {
+        display: none;
+      }
+    }
+
     #logo {
       display: inline;
       order: -1;
@@ -122,66 +148,57 @@
       svg {
         fill: $primary;
       }
-
-      &:hover {
-        svg {
-          fill: blue;
-        }
-      }
     }
 
-    .collapsed {
-      display: inline;
-      pointer-events: none;
-    }
+    .bottom.collapsed {
+      display: flex;
+      flex-direction: column;
+      background-color: inherit;
+      color: inherit;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: inherit;
+      width: 100%;
+      -webkit-animation: scale-in-ver-top 0.5s both;
+      animation: scale-in-ver-top 0.5s both;
 
-    .notCollapsed {
-      pointer-events: auto;
-    }
-
-    .nav-item {
-      display: none;
-    }
-
-    &:focus-within {
-      #collapseButton {
-        //TO DO
-        // transform svg to menu to cross
-      }
-
-      .bottom {
-        display: flex;
-        flex-direction: column;
-        background-color: inherit;
-        color: inherit;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        font-family: inherit;
-        font-size: inherit;
-        width: 100%;
-        -webkit-animation: scale-in-ver-top 0.5s both;
-        animation: scale-in-ver-top 0.5s both;
-
-        .nav-item {
-          display: block;
-          @include nav-item;
-          margin-left: 1rem;
-          margin-top: 0.5rem;
-          margin-bottom: 0.5rem;
-        }
+      .nav-item {
+        display: block;
+        @include nav-item;
+        margin-left: 1rem;
+        margin-top: 0.5rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
       }
 
       @include dropdown;
       #dropdown {
         &:hover,
         &:focus-within {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          button {
+            -webkit-animation: slide-right 0.5s both;
+            animation: slide-right 0.5s both;
+          }
+
           #submenu {
             top: 0%;
             position: static;
           }
         }
       }
+    }
+
+    .bottom.notCollapsed {
+      display: none;
+    }
+
+    .nav-item {
+      display: none;
     }
   }
 

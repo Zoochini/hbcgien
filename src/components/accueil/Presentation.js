@@ -2,7 +2,7 @@ import React from "react";
 
 function Presentation() {
   return (
-    <div>
+    <div className="presentation col">
       <h1>Petite présentation de l'équipe :</h1>
       <p>
         Pellentesque habitant morbi tristique senectus et netus et malesuada

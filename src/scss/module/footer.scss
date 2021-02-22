@@ -19,11 +19,16 @@
   a,
   a:link,
   a:visited {
+    max-width: 300px;
+    width: 100%;
     text-decoration: none;
     transition: all 0.3s;
     margin: 0.3rem;
     color: inherit;
     border-left: solid 1px $secondary;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     > svg,
     > span {
       transition: all 0.3s;

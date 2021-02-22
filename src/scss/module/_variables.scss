@@ -3,15 +3,21 @@
 @import "mixins";
 
 /* Colors */
-
 $primary: #ff7e20 !default;
 $secondary: #000000 !default;
 $ternary: #d7d7d7 !default;
 
+/* Opacity */
+$opacity-0: 0 !default;
+$opacity-1: 0.2 !default;
+$opacity-2: 0.4 !default;
+$opacity-3: 0.6 !default;
+$opacity-4: 0.8 !default;
+$opacity-5: 1 !default;
+
 /* Fonts */
 
 /* Sizes */
-
 $menu-height: 64px;
 $menu-height-lg: 6rem;
 $menu-width-lg: 68.75rem;
@@ -24,6 +30,10 @@ $content-width-md: 50%;
 
 /* Bootstrap Grid System */
 @import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+$grid-columns: 2;
+$grid-gutter-width: 60px;
+$grid-gutter-height: 30px;
 
 $grid-breakpoints-xs: map_get($grid-breakpoints, xs);
 $grid-breakpoints-sm: map_get($grid-breakpoints, sm);

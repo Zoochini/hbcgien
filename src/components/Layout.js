@@ -3,11 +3,11 @@ import Menu from "./menu/Menu";
 import Footer from "./footer/Footer";
 import "../scss/module/content.scss";
 
-function Layout({ children }) {
+function Layout({ className, children }) {
   return (
     <div id="layout">
       <Menu />
-      <div id="content">{children}</div>
+      <div id="content" className={className + " container-lg"}>{children}</div>
       <Footer />
     </div>
   );

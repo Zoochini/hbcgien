@@ -4,9 +4,14 @@
   /** Screen < 1100px */
   @media (max-width: $grid-breakpoints-lg) {
     min-height: calc(100vh - #{$menu-height} - #{$footer-height});
+    max-width: auto;
   }
   /** Screen > 1100px */
   @media (min-width: $grid-breakpoints-lg) {
     min-height: calc(100vh - #{$menu-height-lg} - #{$footer-height});
   }
+
+  font-family: $font-family-content;
+  margin: auto;
+  background-color: #fff;
 }

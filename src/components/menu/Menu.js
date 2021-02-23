@@ -1,12 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import "../../scss/module/menu.scss";
 import CollapseButton from "./CollapseButton";
 
-function Menu(props) {
+function Menu() {
   const [collapsed, setCollapsed] = useState("notCollapsed");
+  const [equipes, setEquipes] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  //Fetching all the equipes
+  const fetchEquipes = async () => {
+    let myHeaders = new Headers();
+    let requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URI}equipes`,
+      requestOptions
+    );
+    res.json().then((res) => setEquipes(res));
+  };
+
+  //Fetching categories
+  const fetchCategories = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URI}categories`, {
+      method: "GET",
+      headers: new Headers(),
+    });
+    res.json().then((res) => setCategories(res));
+  };
+
+  useEffect(() => {
+    fetchCategories();
+    fetchEquipes();
+  }, []);
 
   function handleClick(e) {
     switch (collapsed) {
@@ -22,6 +52,23 @@ function Menu(props) {
     }
   }
 
+  function Equipes() {
+    return (
+      <>
+        {categories.map((v) => (
+          <>
+            <span className="nav-header">{v.nom}</span>
+            {equipes.map((x) => (
+              <Link to={`/equipes${x._id}`} className="nav-item">
+                {x.label}
+              </Link>
+            ))}
+          </>
+        ))}
+      </>
+    );
+  }
+
   return (
     <nav id="menu">
       <div className="top">
@@ -33,41 +80,58 @@ function Menu(props) {
           Accueil
         </Link>
         <Dropdown value="Club">
-          <Link to="/" className="nav-item">
-            Historique de l'association
-          </Link>
-          <Link to="/bbb" className="nav-item">
-            Le mot du président
-          </Link>
-          <Link to="/ccc" className="nav-item">
-            Le conseil d'administration
-          </Link>
+          <div className="nav-col">
+            <Link to="/" className="nav-item">
+              Historique de l'association
+            </Link>
+            <Link to="/bbb" className="nav-item">
+              Le mot du président
+            </Link>
+            <Link to="/ccc" className="nav-item">
+              Le conseil d'administration
+            </Link>
+          </div>
         </Dropdown>
-        <Dropdown value="Equipes"></Dropdown>
+        <Dropdown value="Equipes">
+          {categories.map((v) => (
+            <div className="nav-col">
+              <span className="nav-header">{v.nom}</span>
+              {equipes.map((x) => (
+                <Link to={`/equipes${x._id}`} className="nav-item">
+                  {x._id}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </Dropdown>
         <Dropdown value="Infos pratiques">
-          <Link to="/inscription" className="nav-item">
-            S'inscrire
-          </Link>
-          <Link to="/" className="nav-item">
-            Qui contacter ?
-          </Link>
-          <Link to="/" className="nav-item">
-            Synchroniser un calendrier
-          </Link>
+          <div className="nav-col">
+            <Link to="/inscription" className="nav-item">
+              S'inscrire
+            </Link>
+            <Link to="/" className="nav-item">
+              Qui contacter ?
+            </Link>
+            <Link to="/" className="nav-item">
+              Synchroniser un calendrier
+            </Link>
+          </div>
         </Dropdown>
         <Dropdown value="Arbitrage">
-          <Link to="/" className="nav-item">
-            Devenez arbitre
-          </Link>
-          <Link to="/" className="nav-item">
-            Apprendre les gestes
-          </Link>
-          <Link to="/" className="nav-item">
-            Les arbitres du club
-          </Link>
-          <Link to="/" className="nav-item">
-            La vie d'arbitre
-          </Link>
+          <div className="nav-col">
+            <Link to="/" className="nav-item">
+              Devenez arbitre
+            </Link>
+            <Link to="/" className="nav-item">
+              Apprendre les gestes
+            </Link>
+            <Link to="/" className="nav-item">
+              Les arbitres du club
+            </Link>
+            <Link to="/" className="nav-item">
+              La vie d'arbitre
+            </Link>
+          </div>
         </Dropdown>
         <Link to="/actus" className="nav-item">
           Actualités

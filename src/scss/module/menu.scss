@@ -1,7 +1,9 @@
 @import "variables";
 
 @mixin menu {
-  height: $menu-height-lg;
+  min-height: $menu-height-lg;
+  max-height: 100vh;
+  height: 100%;
   background-color: $secondary;
   color: $primary;
   font-family: $font-family-h;
@@ -24,37 +26,64 @@
   }
 }
 
+@mixin nav-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: inherit;
+}
+
 @mixin nav-item {
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem;
+  margin: 0px;
+  width: 100%;
+}
+
+@mixin nav-header {
+  display: flex;
+  text-transform: uppercase;
+  justify-content: space-between;
+  text-decoration-line: overline;
+  text-overline-offset: 5px;
+  line-height: normal;
+  border-left: solid 1px $primary;
 }
 
 @mixin dropdown {
   #dropdown {
     #submenu {
+      overflow-y: auto;
       font-size: 1rem;
       padding-left: $x-margin-lg;
       padding-right: $x-margin-lg;
     }
 
-    .nav-item {
-      @include nav-item;
-
+    .nav-col {
+      @include nav-col;
       > * {
         display: inline !important;
       }
-      > svg {
-        align-self: end;
-        fill: $primary;
-        * {
-          display: inline;
-        }
+    }
+
+    .nav-header {
+      @include nav-header;
+      > * {
+        display: inline !important;
+      }
+    }
+
+    .nav-item {
+      @include nav-item;
+      > * {
+        display: inline !important;
       }
 
       &:hover {
-        -webkit-animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
-        animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        -webkit-animation: shadow-pop-bl 0.3s
+          cubic-bezier(0.47, 0, 0.745, 0.715) both;
+        animation: shadow-pop-bl 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) both;
       }
     }
 
@@ -62,9 +91,9 @@
     &:hover {
       #submenu {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex-wrap: wrap;
-        max-height: $menu-height-lg * 2;
+        max-height: $menu-height-lg * 4;
         position: absolute;
         top: 100%;
         left: 0;
@@ -95,10 +124,10 @@
   @include menu;
 
   /**
-   Screen > 1100px 
+   Screen < 1100px 
   */
   @media (max-width: $grid-breakpoints-lg) {
-    height: $menu-height;
+    min-height: $menu-height;
     flex-direction: column;
 
     .top {
@@ -152,6 +181,7 @@
     }
 
     .bottom.collapsed {
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       background-color: inherit;
@@ -207,23 +237,38 @@
     @include menu;
     padding-left: $x-margin-lg;
     padding-right: $x-margin-lg;
+    align-items: stretch;
+    line-height: $menu-height-lg;
+    max-height: $menu-height-lg;
 
     #collapseButton {
       display: none;
       visibility: hidden;
     }
 
+    .top {
+      align-self: center;
+      max-height: inherit;
+    }
+
     .bottom {
       display: inherit;
+      > .nav-item {
+        line-height: inherit !important;
+        padding-left: 0.5rem;
+        button{
+          height: 100%;
+        }
+      }
+      .nav-item{
+        line-height: normal
+      }
     }
 
-    .nav-item {
-      margin: 0.5rem;
-      font-size: inherit;
-    }
-
+    
     @include dropdown;
     #dropdown {
+      .nav-header,
       .nav-item {
         width: calc(#{$menu-width-lg} / 4);
       }

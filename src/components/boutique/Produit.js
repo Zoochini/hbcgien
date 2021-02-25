@@ -4,13 +4,17 @@ export class Produit extends Component {
   render() {
     let { produit, commande, onChange } = this.props;
     return (
-      <div className="col-6-sm col-3-lg p-2">
+      <div className="col-lg-3 col-6 p-2">
         <div id="produit" onChange={onChange}>
           <img src={produit.image}></img>
           <br />
-          <label id={produit._id}>{produit.nom}</label>
+          <label id={produit._id}>
+            {produit.nom}
+          </label>
           <br />
-          <span className="text-danger"><s>Prix de base : {produit.prixBase} </s></span>
+          <span className="prixBase">
+            <s>Prix de base : {produit.prixBase} </s>
+          </span>
           <label id={produit._id}>Prix club : {produit.prixClub}</label>
           <div id={produit._id} className="form-group">
             <select

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { PDFDownloadLink, Document, Page, Text } from "@react-pdf/renderer";
 import PDFCommande from "./PDFCommande";
 import Produit from "./Produit";
-import Coordonnes from "./coordonnes/Coordonnes.js";
-import Menu from "./menu/Menu";
+import Coordonnes from "./Coordonnes.js";
+import Layout from "../Layout";
+import "../../scss/module/boutique.scss";
 
 export class Boutique extends Component {
   constructor(props) {
@@ -169,43 +170,38 @@ export class Boutique extends Component {
   render() {
     let { produits, commande, coordonnes, isReady } = this.state;
     return (
-      <div>
-        <Menu />
-        <div id="boutique">
-          <div className="container my-2 py-2">
-            <div className="row justify-content-around">
-              {produits.map((v) => {
-                return (
-                  <Produit
-                    produit={v}
-                    commande={commande.find((x) => {
-                      if (x !== undefined) return x.nom === v.nom;
-                    })}
-                    onChange={this.handleChange}
-                  />
-                );
-              })}
-            </div>
-            <Coordonnes
-              coordonnes={coordonnes}
-              onChange={this.handleChangeCoordonnes}
-            />
-            <div className="row my-2 ml-2">
-              {isReady && (
-                <PDFDownloadLink
-                  document={
-                    <PDFCommande commande={commande} coordonnes={coordonnes} />
-                  }
-                  fileName="commandeHBC.pdf"
-                  className="btn btn-primary"
-                >
-                  Bon de commande
-                </PDFDownloadLink>
-              )}
-            </div>
-          </div>
+      <Layout className="boutique">
+        <div className="row justify-content-center">
+          {produits.map((v) => {
+            return (
+              <Produit
+                produit={v}
+                commande={commande.find((x) => {
+                  if (x !== undefined) return x.nom === v.nom;
+                })}
+                onChange={this.handleChange}
+              />
+            );
+          })}
         </div>
-      </div>
+        <Coordonnes
+          coordonnes={coordonnes}
+          onChange={this.handleChangeCoordonnes}
+        />
+        <div className="row">
+          {isReady && (
+            <PDFDownloadLink
+              document={
+                <PDFCommande commande={commande} coordonnes={coordonnes} />
+              }
+              fileName="commandeHBC.pdf"
+              className=""
+            >
+              Bon de commande
+            </PDFDownloadLink>
+          )}
+        </div>
+      </Layout>
     );
   }
 }

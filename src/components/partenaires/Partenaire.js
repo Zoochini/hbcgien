@@ -4,16 +4,13 @@ export class Partenaire extends Component {
   render() {
     let { name, link, src } = this.props;
     return (
-      <div className="col-lg-4 text-center">
-        <div className="thumbnail">
+      <div className="col-lg-4 col my-2 text-center partenaire">
           <a href={link} alt={name}>
             <img
-              className="img-responsive"
               src={src}
               alt={name}
             ></img>
           </a>
-        </div>
       </div>
     );
   }

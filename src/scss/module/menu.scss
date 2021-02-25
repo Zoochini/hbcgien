@@ -111,7 +111,7 @@
       @include noEffectButton;
       font-size: inherit;
       display: block;
-
+      outline: none;
       * {
         display: inline;
         fill: $primary;

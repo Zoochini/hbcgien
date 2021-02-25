@@ -1,0 +1,51 @@
+@import "variables";
+
+@mixin label {
+  label {
+    padding: 1rem;
+    text-transform: capitalize;
+  }
+}
+
+.boutique {
+  @include label;
+  font-size: $font-size-boutique;
+
+  #produit {
+    text-align: center;
+
+    > img {
+      max-height: 300px;
+      max-width: 200px;
+    }
+
+    .prixBase {
+      color: red;
+    }
+    input,
+    select {
+      font-size: inherit;
+      display: inline-block;
+      padding: 12px 20px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      &:focus {
+        box-shadow: 0px 0px 3px $primary;
+      }
+
+      &:invalid {
+        box-shadow: 0px 0px 3px red;
+      }
+
+      &[type="number"] {
+        appearance: textfield;
+      }
+    }
+  }
+  .coordonnes {
+    .coordonnes-champ {
+    }
+  }
+}

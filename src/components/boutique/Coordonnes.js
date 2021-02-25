@@ -5,8 +5,8 @@ export class Coordonnes extends Component {
   render() {
     let { coordonnes, onChange } = this.props;
     return (
-      <div id="coordonnes" className="container">
-        <div className="form-group row">
+      <div id="coordonnes">
+        <div className="row">
           {Object.entries(coordonnes).map((v) => {
             let name = v[0];
             let label = v[0];

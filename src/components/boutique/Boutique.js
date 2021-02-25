@@ -195,7 +195,7 @@ export class Boutique extends Component {
                 <PDFCommande commande={commande} coordonnes={coordonnes} />
               }
               fileName="commandeHBC.pdf"
-              className=""
+              className="submitButton col-lg-2 col m-3"
             >
               Bon de commande
             </PDFDownloadLink>

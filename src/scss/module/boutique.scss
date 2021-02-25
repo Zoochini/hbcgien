@@ -1,14 +1,45 @@
 @import "variables";
 
-@mixin label {
+@mixin form {
+  $border-radius-form: 4px;
+
   label {
-    padding: 1rem;
+    display: inline-block;
+    padding: 0.5rem;
     text-transform: capitalize;
+  }
+  input,
+  select {
+    font-size: inherit;
+    display: inline-block;
+    padding: 12px 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: $border-radius-form;
+    outline: none;
+    &:focus {
+      box-shadow: 0px 0px 3px $primary;
+    }
+    &:invalid {
+      box-shadow: 0px 0px 3px red;
+    }
+    &[type="number"] {
+      appearance: textfield;
+    }
+  }
+  .submitButton{
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    color: $secondary;
+    background-color: $primary;
+    border: 1px solid $primary;
+    border-radius: $border-radius-form;
   }
 }
 
 .boutique {
-  @include label;
+  @include form;
   font-size: $font-size-boutique;
 
   #produit {
@@ -20,32 +51,8 @@
     }
 
     .prixBase {
+      text-decoration: line-through;
       color: red;
-    }
-    input,
-    select {
-      font-size: inherit;
-      display: inline-block;
-      padding: 12px 20px;
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      outline: none;
-      &:focus {
-        box-shadow: 0px 0px 3px $primary;
-      }
-
-      &:invalid {
-        box-shadow: 0px 0px 3px red;
-      }
-
-      &[type="number"] {
-        appearance: textfield;
-      }
-    }
-  }
-  .coordonnes {
-    .coordonnes-champ {
     }
   }
 }

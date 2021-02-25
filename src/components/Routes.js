@@ -1,13 +1,13 @@
 import { Route, Switch } from "react-router";
 import React from "react";
 import Accueil from "./accueil/Accueil";
-import Actus from "./Actus";
-import Article from "./Article";
+import Actus from "./actualites/Actus";
+import Article from "./article/Article";
 import Contact from "./Contact";
 import Inscription from "./Inscription";
 import { Partenaires } from "./Partenaires";
 import Boutique from "./Boutique";
-import Equipe from "./Equipe";
+import Equipe from "./equipe/Equipe";
 import NotFound from "./NotFound";
 import Admin from "./Admin";
 

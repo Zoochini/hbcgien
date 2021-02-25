@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import marked from "marked";
 import parse from "html-react-parser";
-import Menu from "./menu/Menu";
+import Menu from "../menu/Menu";
 
 export class Article extends Component {
   constructor(props) {

@@ -1,0 +1,78 @@
+@import "variables";
+
+.actus {
+  padding-top: $grid-gutter-height;
+  padding-bottom: $grid-gutter-height;
+  .actu {
+    display: inline-block;
+    /**
+    * The formula to calculate the ideal size 
+    * for the actu is determine by the manner of bootstrap tyo calculate
+    * is grid-gutter-width whom is divide by 2
+    * before using so we have to do the same here for the content to fit in
+    */
+    width: 255px;
+    color: #fff;
+    text-decoration: none;
+    background-color: $primary;
+    font-size: larger;
+    img {
+      background-color: inherit;
+    }
+    .title {
+      width: inherit;
+      min-height: 20%;
+      margin: 0px;
+      padding: 0.5rem;
+      background: rgba($secondary, $opacity-4);
+      position: absolute;
+      bottom: 0;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      transition: all 0.3s;
+      color: $primary;
+      background-color: $secondary;
+      .title {
+        background: $secondary;
+      }
+    }
+  }
+
+  .pagination {
+    color: $secondary;
+    text-align: center;
+    text-decoration: none;
+    border-top: 1px solid $secondary;
+    border-right: 1px solid $secondary;
+    border-bottom: 1px solid $secondary;
+    border-radius: 3px;
+    margin-top: $grid-gutter-height;
+    margin-bottom: $grid-gutter-height;
+    width: fit-content;
+    height: 2rem;
+    line-height: 2rem;
+
+    a {
+      display: inline-block;
+      height: 100%;
+      min-width: 2rem;
+      color: inherit;
+      text-decoration: inherit;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      border-left: 1px solid $secondary;
+      &:hover{
+        transition: all 0.3s;
+        background-color: $ternary;
+      }
+    }
+
+    a.active {
+      color: #fff;
+      pointer-events: none;
+      background-color: $primary;
+    }
+  }
+}

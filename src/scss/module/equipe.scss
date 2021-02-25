@@ -1,0 +1,31 @@
+@import "variables";
+
+.equipe {
+  text-align: center;
+  .img-card {
+    img {
+      padding: 1rem;
+      max-width: 100%;
+      height: auto;
+    }
+    .label {
+      text-transform: uppercase;
+    }
+  }
+
+  .joueurs {
+    .joueur {
+      border: 1px solid $primary;
+      border-radius: 3px;
+      span {
+        padding: 0.2rem;
+      }
+      .nom {
+        text-transform: uppercase;
+      }
+      .prenom {
+        text-transform: capitalize;
+      }
+    }
+  }
+}

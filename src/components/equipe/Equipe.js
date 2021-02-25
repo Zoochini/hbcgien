@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Joueur from "./Joueur";
-import Menu from "./menu/Menu";
+import Layout from "../Layout";
+import Menu from "../menu/Menu";
+import "../../scss/module/equipe.scss";
 
 export class Equipe extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ export class Equipe extends Component {
     this.fetchEquipe = this.fetchEquipe.bind(this);
   }
 
-  /** Load Equipe */
+  /** Fetch Equipe with id */
   fetchEquipe() {
     let { equipe } = this.props.match.params;
     if (equipe !== undefined)
@@ -42,22 +44,17 @@ export class Equipe extends Component {
   render() {
     let { joueurs, image, label } = this.state;
     return (
-      <div>
-        <Menu />
-        <div id="equipe" className="container text-center my-2">
-          <h1>{label}</h1>
-          <img className="" src={image} />
-          <div className="row justify-content-between">
-            {joueurs.map((v) => {
-              return (
-                <div className="col-sm-6 col-lg-3 py-2">
-                  <Joueur value={v} />
-                </div>
-              );
-            })}
-          </div>
+      <Layout className="equipe">
+        <div className="img-card row-cols">
+          <img src={image}></img>
+          <h1 className="label">{label}</h1>
         </div>
-      </div>
+        <div className="joueurs row">
+          {joueurs.map((v) => {
+            return <Joueur value={v} />;
+          })}
+        </div>
+      </Layout>
     );
   }
 }

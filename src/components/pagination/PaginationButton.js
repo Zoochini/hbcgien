@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 
 export class PaginationButton extends Component {
   render() {
-    let { value, path, active } = this.props;
+    let { value, path, className } = this.props;
 
     return (
-      <li className={`page-item ${active}`} >
-        <Link to={`/actus/${path}`} className="page-link">
-          {value}
-        </Link>
-      </li>
+      <Link to={`/actus/${path}`} className={`${className}`}>
+        {value}
+      </Link>
     );
   }
 }

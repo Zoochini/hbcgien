@@ -52,23 +52,6 @@ function Menu() {
     }
   }
 
-  function Equipes() {
-    return (
-      <>
-        {categories.map((v) => (
-          <>
-            <span className="nav-header">{v.nom}</span>
-            {equipes.map((x) => (
-              <Link to={`/equipes${x._id}`} className="nav-item">
-                {x.label}
-              </Link>
-            ))}
-          </>
-        ))}
-      </>
-    );
-  }
-
   return (
     <nav id="menu">
       <div className="top">
@@ -97,7 +80,7 @@ function Menu() {
             <div className="nav-col">
               <span className="nav-header">{v.nom}</span>
               {equipes.map((x) => (
-                <Link to={`/equipes${x._id}`} className="nav-item">
+                <Link to={`/equipes/${x._id}`} className="nav-item">
                   {x._id}
                 </Link>
               ))}

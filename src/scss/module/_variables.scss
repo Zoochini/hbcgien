@@ -33,7 +33,7 @@ $content-width-md: 50%;
 
 $grid-columns: 2;
 $grid-gutter-width: 60px;
-$grid-gutter-height: 30px;
+$grid-gutter-height: $grid-gutter-width / 2;
 
 $grid-breakpoints-xs: map_get($grid-breakpoints, xs);
 $grid-breakpoints-sm: map_get($grid-breakpoints, sm);

@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router";
+import { Route, Switch, Redirect, useRouteMatch } from "react-router";
 import React from "react";
 import Accueil from "./accueil/Accueil";
 import Actus from "./actualites/Actus";
@@ -9,7 +9,33 @@ import Partenaires from "./partenaires/Partenaires";
 import Boutique from "./boutique/Boutique";
 import Equipe from "./equipe/Equipe";
 import NotFound from "./NotFound";
-import Admin from "./Admin";
+import Gestion from "./cms/list/Gestion";
+import Form from "./cms/form/Form";
+import Login from "./cms/Login";
+import { loggedIn } from "../utils.js";
+
+function PrivateRoute({ ...rest }) {
+  if (loggedIn()) {
+    return <Route {...rest} />;
+  } else {
+    return <Redirect to="/login" />;
+  }
+}
+
+function Admin() {
+  let { path } = useRouteMatch();
+
+  return (
+    <Switch>
+      <Route exact path={[`${path}`, `${path}/login`]} component={Login} />
+      <PrivateRoute
+        path={[`${path}/:schema/new`, `${path}/login/:schema/:id`]}
+        component={Form}
+      />
+      <PrivateRoute path={`${path}/:schema`} component={Gestion} />
+    </Switch>
+  );
+}
 
 export const Routes = () => {
   return (
@@ -22,7 +48,9 @@ export const Routes = () => {
       <Route exact path="/infos/inscription" component={Inscription} />
       <Route exact path="/boutique" component={Boutique} />
       <Route path="/equipes/:equipe" component={Equipe} />
-      <Route path="/__admin" component={Admin} />
+      <Route path="/__admin">
+        <Admin />
+      </Route>
       <Route component={NotFound} />
     </Switch>
   );

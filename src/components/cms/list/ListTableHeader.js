@@ -19,6 +19,7 @@ export class ListTableHeader extends Component {
                 case "__v":
                 case "joueurs":
                 case "content":
+                case "file":
                   break;
                 case "nom":
                   return <ListTableTh data="Nom" />;

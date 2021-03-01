@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 export class ListTableTd extends Component {
   render() {
-    let { data } = this.props;
-    return <td>{data}</td>;
+    let { data, className } = this.props;
+    return <td className={`${className}`}>{data}</td>;
   }
 }
 

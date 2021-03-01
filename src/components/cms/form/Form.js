@@ -58,7 +58,7 @@ export class Form extends Component {
   }
 
   render() {
-    return <CMSLayout>{this.getForm()}</CMSLayout>;
+    return <CMSLayout className="form">{this.getForm()}</CMSLayout>;
   }
 }
 

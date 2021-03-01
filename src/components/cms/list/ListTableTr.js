@@ -23,14 +23,22 @@ export class ListTableTr extends Component {
               let d = new Date(data[v]);
               return (
                 <ListTableTd
-                  data={d.getDay() + "/" + d.getDate() + "/" + d.getFullYear()}
+                  className="cell"
+                  data={
+                    (d.getDate() < 10 ? "0" + d.getDate() : d.getDate()) +
+                    "/" +
+                    (d.getMonth() < 10 ? "0" + d.getMonth() : d.getMonth()) +
+                    "/" +
+                    d.getFullYear()
+                  }
                 />
               );
             default:
-              return <ListTableTd data={data[v]} />;
+              return <ListTableTd className="cell" data={data[v]} />;
           }
         })}
         <ListTableTd
+          className="last-cell"
           data={
             <Link to={`${schema}/${id}`}>
               <svg
@@ -45,6 +53,7 @@ export class ListTableTr extends Component {
           }
         />
         <ListTableTd
+          className="last-cell"
           data={
             <Link>
               <svg

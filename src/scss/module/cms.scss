@@ -58,7 +58,7 @@
 #cms {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  height: 100vh;
   font-family: $font-family-content;
 
   .cms-menu {
@@ -68,8 +68,9 @@
     color: $primary;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 1rem;
+    height: 100vh;
     min-width: calc(100vh * 0.25);
     text-decoration: none;
 
@@ -93,7 +94,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    margin: 10px;
     padding: 10px;
     width: 100%;
     &.gestion {
@@ -106,6 +106,22 @@
     &.form {
       @include form;
       .submit-button {
+        @include cms-button;
+        &:active {
+          box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+            inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+
+    &.cms-login {
+      @include form;
+      width: fit-content;
+      position: absolute;
+      border: 1px solid $primary;
+      top: 30%;
+      left: 50%;
+      input[type="button"] {
         @include cms-button;
         &:active {
           box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),

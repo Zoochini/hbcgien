@@ -27,7 +27,9 @@ function Admin() {
 
   return (
     <Switch>
-      <Route exact path={[`${path}`, `${path}/login`]} component={Login} />
+      <Route exact path={[`${path}`, `${path}/login`]} component={Login}>
+        {loggedIn() ? <Redirect to={`${path}/articles`} /> : <Login />}
+      </Route>
       <PrivateRoute
         path={[`${path}/:schema/new`, `${path}/login/:schema/:id`]}
         component={Form}

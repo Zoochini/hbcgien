@@ -20,6 +20,7 @@ export class ListTableTr extends Component {
             case "file":
               break;
             case "dateNaissance":
+            case "date":
               let d = new Date(data[v]);
               return (
                 <ListTableTd
@@ -27,7 +28,9 @@ export class ListTableTr extends Component {
                   data={
                     (d.getDate() < 10 ? "0" + d.getDate() : d.getDate()) +
                     "/" +
-                    (d.getMonth() < 10 ? "0" + d.getMonth() : d.getMonth()) +
+                    (d.getMonth() < 10
+                      ? "0" + (d.getMonth() + 1)
+                      : d.getMonth() + 1) +
                     "/" +
                     d.getFullYear()
                   }

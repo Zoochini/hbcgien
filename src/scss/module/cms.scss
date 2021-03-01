@@ -1,0 +1,102 @@
+@import "variables";
+
+@mixin table {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid $ternary;
+    th {
+      text-transform: capitalize;
+      text-align: left;
+      height: 2.5rem;
+      border-bottom: 2px solid $ternary;
+    }
+    tbody {
+      tr {
+        td {
+          border-bottom: 2px solid $ternary;
+        }
+        &:nth-child(even) {
+          background: $ternary;
+        }
+        &:hover {
+          background: $primary;
+        }
+      }
+    }
+  }
+}
+
+#cms {
+  @include form;
+
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  font-family: $font-family-content;
+
+  .cms-menu {
+    position: sticky;
+    overflow-y: auto;
+    background: $secondary;
+    color: $primary;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 1rem;
+    min-width: calc(100vh * 0.25);
+    text-decoration: none;
+
+    a {
+      text-decoration: inherit;
+      text-transform: uppercase;
+      font-size: larger;
+      color: inherit;
+      border: 1px solid $secondary;
+      border-radius: 4px;
+      padding: 0.5rem;
+      margin: 0.5rem;
+      &:hover {
+        transition: all 0.5s;
+        color: $secondary;
+        background: $primary;
+      }
+    }
+  }
+
+  .cms-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    &.gestion {
+      @include table;
+      .add-button {
+        @include noEffectButton;
+        width: fit-content;
+        color: $secondary;
+        margin: 10px;
+        padding: 10px;
+        height: 3rem;
+        border: 1px solid $primary;
+        border-radius: 4px;
+        background: $primary;
+
+        svg {
+          margin-left: 5px;
+          vertical-align: text-bottom;
+        }
+        &:hover {
+          transition: all 0.2s;
+          color: #fff;
+          svg {
+            transition: all 0.2s;
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
+}

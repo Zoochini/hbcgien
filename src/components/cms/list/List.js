@@ -68,7 +68,7 @@ export class List extends Component {
     let { schema } = this.props;
 
     return (
-      <div className="col">
+      <div className="">
         <ListTable data={data} deleteFunction={deleteItem} schema={schema} />
       </div>
     );

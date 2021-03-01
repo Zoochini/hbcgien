@@ -6,7 +6,7 @@ export class ListTable extends Component {
   render() {
     let { data, deleteFunction, schema } = this.props;
     return (
-      <table className="table table-hover">
+      <table className="">
         <ListTableHeader data={data[0]} />
         <tbody>
           {data.map((v) => {

@@ -7,16 +7,19 @@ export class Gestion extends Component {
   render() {
     let { schema } = this.props.match.params;
     return (
-      <CMSLayout>
-        <div className="row">
-          <Link className="" to={`/__admin/${schema}/new`}>
-            <span className="">Ajouter {schema}</span>
-            <span className="oi oi-plus" title="plus" aria-hidden="true"></span>
-          </Link>
-        </div>
-        <div className="row">
-          <List schema={this.props.match.params.schema} />
-        </div>
+      <CMSLayout className="gestion">
+        <Link className="add-button" to={`/__admin/${schema}/new`}>
+          Ajouter {schema}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
+          </svg>
+        </Link>
+        <List schema={this.props.match.params.schema} />
       </CMSLayout>
     );
   }

@@ -1,11 +1,12 @@
 import React from "react";
 import Menu from "./menu/Menu";
+import "../../scss/module/cms.scss";
 
 function CMSLayout({ className, children }) {
   return (
-    <div id="CMSLayout">
+    <div id="cms">
       <Menu />
-      <div id="CMS" className={className + " container"}>
+      <div id="cms-content" className={`cms-content ${className}`}>
         {children}
       </div>
     </div>

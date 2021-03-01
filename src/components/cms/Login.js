@@ -9,7 +9,7 @@ export class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      access_token: "",
+      access_token: window.sessionStorage.getItem("access_token"),
       response: "",
     };
 
@@ -63,7 +63,7 @@ export class Login extends Component {
 
   render() {
     let { username, password, response, access_token } = this.state;
-    return access_token === undefined ? (
+    return access_token === null ? (
       <CMSLayout className="cms-login">
         <label for="username">Utilisateur :</label>
         <input
@@ -83,7 +83,7 @@ export class Login extends Component {
         <p>{response}</p>
       </CMSLayout>
     ) : (
-      <Redirect to="/" />
+      <Redirect to="/__admin/articles" />
     );
   }
 }

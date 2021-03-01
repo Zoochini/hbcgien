@@ -18,37 +18,37 @@ export class Form extends Component {
     switch (schema) {
       case "articles":
         return (
-          <form className="">
+          <form>
             <FormArticle schema={schema} id={id} />
           </form>
         );
       case "equipes":
         return (
-          <form className="">
+          <form>
             <FormEquipe schema={schema} id={id} />
           </form>
         );
       case "inscriptions":
         return (
-          <form className="">
+          <form>
             <FormInscription schema={schema} id={id} />
           </form>
         );
       case "licencies":
         return (
-          <form className="">
+          <form>
             <FormLicencie schema={schema} id={id} />
           </form>
         );
       case "partenaires":
         return (
-          <form className="">
+          <form>
             <FormPartenaire schema={schema} id={id} />
           </form>
         );
       case "produits":
         return (
-          <form className="">
+          <form>
             <FormProduit schema={schema} id={id} />
           </form>
         );

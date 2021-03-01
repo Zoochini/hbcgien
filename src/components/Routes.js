@@ -15,10 +15,12 @@ import Login from "./cms/Login";
 import { loggedIn } from "../utils.js";
 
 function PrivateRoute({ ...rest }) {
+  let { path } = useRouteMatch();
+
   if (loggedIn()) {
     return <Route {...rest} />;
   } else {
-    return <Redirect to="/login" />;
+    return <Redirect to={`${path}/login`} />;
   }
 }
 
@@ -27,11 +29,9 @@ function Admin() {
 
   return (
     <Switch>
-      <Route exact path={[`${path}`, `${path}/login`]} component={Login}>
-        {loggedIn() ? <Redirect to={`${path}/articles`} /> : <Login />}
-      </Route>
+      <Route exact path={[`${path}`, `${path}/login`]} component={Login} />
       <PrivateRoute
-        path={[`${path}/:schema/new`, `${path}/login/:schema/:id`]}
+        path={[`${path}/:schema/new`, `${path}/:schema/:id`]}
         component={Form}
       />
       <PrivateRoute path={`${path}/:schema`} component={Gestion} />

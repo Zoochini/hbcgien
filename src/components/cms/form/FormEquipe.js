@@ -45,7 +45,6 @@ export class FormEquipe extends Component {
       default:
         break;
     }
-    console.log(this.state);
   }
 
   deleteJoueur(e) {

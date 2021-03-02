@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
+import { loggedIn } from "../../utils";
 import CMSLayout from "./CMSLayout";
 
 export class Login extends Component {
@@ -9,7 +10,7 @@ export class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      access_token: window.sessionStorage.getItem("access_token"),
+      access_token: null,
       response: "",
     };
 
@@ -52,18 +53,21 @@ export class Login extends Component {
       .then((res, err) => {
         if (err) return console.log(err);
         res.access_token !== undefined
-          ? this.setState({
-              response: "Connection réussie",
-              access_token: res.access_token,
-            })
+          ? window.sessionStorage.setItem("access_token", res.access_token)
           : this.setState({ response: res.message });
-        window.sessionStorage.setItem("access_token", res.access_token);
       });
+      setTimeout(() => {
+        this.forceUpdate()
+      }, 3000);
   }
+
+
 
   render() {
     let { username, password, response, access_token } = this.state;
-    return access_token === null ? (
+    console.log(this.state);
+    console.log(window.sessionStorage.getItem("access_token"));
+    return !loggedIn() ? (
       <CMSLayout className="cms-login">
         <label for="username">Utilisateur :</label>
         <input

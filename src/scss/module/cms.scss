@@ -105,6 +105,17 @@
 
     &.form {
       @include form;
+      button {
+        margin: 5px;
+        width: fit-content;
+        border-radius: 4px;
+        line-height: 3rem;
+        font-size: inherit;
+        svg {
+          padding-left: 5px;
+          vertical-align: text-bottom;
+        }
+      }
       .submit-button {
         @include cms-button;
         &:active {

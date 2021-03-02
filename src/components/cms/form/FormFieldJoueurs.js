@@ -25,9 +25,10 @@ export class FormFieldJoueurs extends Component {
   render() {
     let { name, label, value, onChange, onClick } = this.props;
     let { licencies } = this.state;
+    console.log("LICENCIES");
     console.log(licencies);
     return (
-      <div className="form-group col-lg-12">
+      <div>
         <label for={name}>{label} :</label>
         <select
           name={name}
@@ -47,17 +48,14 @@ export class FormFieldJoueurs extends Component {
           })}
         </select>
         {value.map((v) => {
-          let item = licencies.find((e) => e._id === v._id);
-          console.log(v);
+          let item = licencies.find((e) => e._id === v);
           return (
             <button
               type="button"
-              className="btn btn-light m-2"
               value={v}
               onClick={onClick}
             >
               {item.nom + " " + item.prenom}
-              <span className="oi oi-x ml-2" title="x" aria-hidden="true"></span>
             </button>
           );
         })}

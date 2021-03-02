@@ -136,13 +136,12 @@ export class FormLicencie extends Component {
     })
       .then((res) => res.json())
       .then(
-        (res) => {
-          this.setState({ response: "Upload successful" });
-        },
-        (err) => {
-          this.setState({ response: "ERROR" });
-          console.log("Error fetch : " + err);
-        }
+        (res) =>
+          this.setState({
+            response: res._message !== undefined ? "Success !" : res._message,
+          }),
+        (err) =>
+          this.setState({ response: "Upload Error please verifiy connection" })
       );
   }
 

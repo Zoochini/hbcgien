@@ -76,8 +76,12 @@ export class FormEquipe extends Component {
       headers: headers,
       body: formData,
     }).then(
-      (res) => this.setState({ response: "Upload success" }),
-      (err) => this.setState({ response: "Error" })
+      (res) =>
+        this.setState({
+          response: res._message !== undefined ? "Success !" : res._message,
+        }),
+      (err) =>
+        this.setState({ response: "Upload Error please verifiy connection" })
     );
   }
 
@@ -104,7 +108,7 @@ export class FormEquipe extends Component {
     let { state } = this;
     console.log(state);
     return (
-      <div className="form-row justify-content-between">
+      <div>
         <FormField
           name="label"
           label="Label"

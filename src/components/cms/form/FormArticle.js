@@ -56,8 +56,12 @@ export class FormArticle extends Component {
       `${process.env.REACT_APP_API_URI}${schema}?id=${id}`,
       requestOptions
     ).then(
-      (res) => this.setState({ response: "Upload success" }),
-      (err) => this.setState({ response: "Error" })
+      (res) =>
+        this.setState({
+          response: res._message !== undefined ? "Success !" : res._message,
+        }),
+      (err) =>
+        this.setState({ response: "Upload Error please verifiy connection" })
     );
   }
 

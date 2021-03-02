@@ -1,88 +1,40 @@
 import React, { Component } from "react";
 import Partenaire from "./Partenaire";
 import Layout from "../Layout";
-import "../../scss/module/partenaires.scss"
+import "../../scss/module/partenaires.scss";
 
 export class Partenaires extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      partenaires: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch(`${process.env.REACT_APP_API_URI}partenaires`, {
+      method: "GET",
+      headers: new Headers(),
+    })
+      .then((res) => res.json())
+      .then((res) => this.setState({ partenaires: res }));
+  }
+
   render() {
+    let { partenaires } = this.state;
     return (
       <Layout className="partenaires">
         {/** Partenaires régions */}
         <div className="row justify-content-center">
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-        </div>
-
-        {/** Autres partenaires */}
-        <div className="row justify-content-center">
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_allianz.jpg"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
-          <Partenaire
-            name="Allianz"
-            link="https://www.allianz.fr/"
-            src="/resources/logo_axa.png"
-          />
+          {partenaires.map((v) => {
+            return (
+              <Partenaire
+                name={v.name}
+                link={v.url}
+                src={`data:${v.image.contentType};base64, ${v.image.data}`}
+              />
+            );
+          })}
         </div>
       </Layout>
     );

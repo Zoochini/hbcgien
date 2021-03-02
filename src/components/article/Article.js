@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import marked from "marked";
 import parse from "html-react-parser";
-import Menu from "../menu/Menu";
+import Layout from "../Layout";
 
 export class Article extends Component {
   constructor(props) {
@@ -55,24 +55,27 @@ export class Article extends Component {
   render() {
     let { title, content, date } = this.state;
     return (
-      <div>
-        <Menu />
+      <Layout>
         <div className="container">
-          <div className="row my-2">
+          <div className="row">
             <div className="col">{parse(marked(title))}</div>
           </div>
-          <div className="row my-2">
+          <div className="row">
             <div className="col">
               <p className="text-justify">{parse(marked(content))}</p>
             </div>
           </div>
-          <div className="row my-2">
+          <div className="row">
             <div className="col">
               <p className="text-justify">
                 {date !== null
-                  ? date.getDay() +
+                  ? (date.getDate() < 10
+                      ? "0" + date.getDate()
+                      : date.getDate()) +
                     "/" +
-                    date.getDate() +
+                    (date.getMonth() < 10
+                      ? "0" + date.getMonth()
+                      : date.getMonth()) +
                     "/" +
                     date.getFullYear()
                   : ""}
@@ -80,7 +83,7 @@ export class Article extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

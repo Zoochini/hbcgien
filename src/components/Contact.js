@@ -1,13 +1,13 @@
 import React, { Component } from "react";
+import Layout from "./Layout";
 import Menu from "./menu/Menu";
 
 export class Contact extends Component {
   render() {
     return (
-      <div>
-        <Menu />
-        <h2>Contact</h2>
-      </div>
+      <Layout>
+        <p>UNDER CONSTRUCTION</p>
+      </Layout>
     );
   }
 }

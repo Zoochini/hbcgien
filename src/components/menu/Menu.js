@@ -80,8 +80,8 @@ function Menu() {
             <div className="nav-col">
               <span className="nav-header">{v.nom}</span>
               {equipes.map((x) => (
-                <Link to={`/equipes/${x.label}`} className="nav-item">
-                  {x._id}
+                <Link to={`/equipes/${x._id}`} className="nav-item">
+                  {x.label}
                 </Link>
               ))}
             </div>

@@ -60,6 +60,8 @@ export class ListTableTr extends Component {
           data={
             <Link>
               <svg
+                onClick={deleteFunction}
+                data-id={id}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"

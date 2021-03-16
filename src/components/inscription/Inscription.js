@@ -26,7 +26,6 @@ export class Inscription extends Component {
   handleClick(e) {
     let { inscriptions } = this.state;
     const id = e.target.id;
-    console.log(e);
     const inscription = inscriptions.find((v) => id === v._id);
     const file =
       inscription !== undefined
@@ -40,7 +39,6 @@ export class Inscription extends Component {
 
   render() {
     let { inscriptions } = this.state;
-    console.log(inscriptions);
     return (
       <Layout className="inscriptions">
         <h1>Inscriptions</h1>

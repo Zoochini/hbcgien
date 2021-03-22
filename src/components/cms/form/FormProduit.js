@@ -86,7 +86,6 @@ export class FormProduit extends Component {
 
   render() {
     let { state } = this;
-    console.log(state);
     return (
       <div className="form-row justify-content-between">
         <FormField

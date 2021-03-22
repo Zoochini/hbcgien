@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import Layout from "../Layout";
 import "../../scss/module/inscriptions.scss";
-import { Redirect } from "react-router";
 
 export class Inscription extends Component {
   constructor(props) {

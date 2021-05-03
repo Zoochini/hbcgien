@@ -111,9 +111,6 @@ function Menu() {
             <Link to="/" className="nav-item">
               Les arbitres du club
             </Link>
-            <Link to="/" className="nav-item">
-              La vie d'arbitre
-            </Link>
           </div>
         </Dropdown>
         <Link to="/actus" className="nav-item">

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import Layout from "../Layout";
-import Calendrier from "./Calendrier";
 import Presentation from "./Presentation";
 import FacebookPage from "./FacebookPage";
 import News from "./News";
@@ -15,10 +14,8 @@ export class Accueil extends Component {
           <Presentation />
         </div>
         <div className="row">
-          <Calendrier />
           <News />
           <FacebookPage />
-          
         </div>
       </Layout>
     );

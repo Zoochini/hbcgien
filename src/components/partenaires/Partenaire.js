@@ -5,12 +5,9 @@ export class Partenaire extends Component {
     let { name, link, src } = this.props;
     return (
       <div className="col-lg-4 col my-2 text-center partenaire">
-          <a href={link} alt={name}>
-            <img
-              src={src}
-              alt={name}
-            ></img>
-          </a>
+        <a href={link} alt={name} target="_blank" rel="noreferrer">
+          <img src={src} alt={name}></img>
+        </a>
       </div>
     );
   }

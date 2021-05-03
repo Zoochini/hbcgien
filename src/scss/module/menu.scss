@@ -55,6 +55,7 @@
   #dropdown {
     #submenu {
       overflow-y: auto;
+      overflow-x: hidden;
       font-size: 1rem;
       padding-left: $x-margin-lg;
       padding-right: $x-margin-lg;
@@ -182,6 +183,7 @@
 
     .bottom.collapsed {
       overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       background-color: inherit;

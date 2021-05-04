@@ -45,7 +45,7 @@ export class FormFieldJoueurs extends Component {
           })}
         </select>
         {value.map((v) => {
-          let item = licencies.find((e) => e._id === v);
+          let item = licencies.find((e) => e._id === v._id);
           return (
             <button type="button" value={v} onClick={onClick}>
               {item.nom + " " + item.prenom}

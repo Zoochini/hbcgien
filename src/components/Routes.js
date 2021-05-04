@@ -47,7 +47,7 @@ export const Routes = () => {
       <Route path={["/actus/:page", "/actus"]} component={Actus} />
       <Route path="/partenaires" component={Partenaires} />
       <Route exact path="/contact" component={Contact} />
-      <Route exact path="/infos/inscription" component={Inscription} />
+      <Route exact path="/inscription" component={Inscription} />
       <Route exact path="/boutique" component={Boutique} />
       <Route path="/equipes/:equipe" component={Equipe} />
       <Route path="/__admin">

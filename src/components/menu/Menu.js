@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
@@ -76,14 +76,21 @@ function Menu() {
           </div>
         </Dropdown>
         <Dropdown value="Equipes">
-          {categories.map((v) => (
+          {/**
+           * Pour chaque catégorie on crée les liens des équipes associés à cette categorie grâce à leurs id
+           */}
+          {categories.map((categorie) => (
             <div className="nav-col">
-              <span className="nav-header">{v.nom}</span>
-              {equipes.map((x) => (
-                <Link to={`/equipes/${x._id}`} className="nav-item">
-                  {x.label}
-                </Link>
-              ))}
+              <span className="nav-header">{categorie.nom}</span>
+              {equipes.map((equipe) =>
+                equipe.categorie._id === categorie._id ? (
+                  <Link to={`/equipes/${equipe._id}`} className="nav-item">
+                    {equipe.label}
+                  </Link>
+                ) : (
+                  ""
+                )
+              )}
             </div>
           ))}
         </Dropdown>

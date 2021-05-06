@@ -13,13 +13,14 @@ export class ListTableHeader extends Component {
             {Object.keys(data).map((v) => {
               switch (v) {
                 case "_id":
+                case "__v":
                 case "tel":
                 case "image":
                 case "categorie":
-                case "__v":
                 case "joueurs":
                 case "content":
                 case "file":
+                case "ref":
                   break;
                 case "nom":
                   return <ListTableTh data="Nom" />;
@@ -45,6 +46,8 @@ export class ListTableHeader extends Component {
                   return <ListTableTh data="Offre Com" />;
                 case "title":
                   return <ListTableTh data="Titre" />;
+                case "index":
+                  return <ListTableTh data="Type" />;
                 default:
                   return <ListTableTh data={v} />;
               }

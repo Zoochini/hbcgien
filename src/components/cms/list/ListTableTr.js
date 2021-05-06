@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ListTable from "./ListTable";
 import ListTableTd from "./ListTableTd";
 
 export class ListTableTr extends Component {
@@ -18,6 +19,7 @@ export class ListTableTr extends Component {
             case "joueurs":
             case "content":
             case "file":
+            case "ref":
               break;
             case "dateNaissance":
             case "date":
@@ -36,6 +38,8 @@ export class ListTableTr extends Component {
                   }
                 />
               );
+            case "index":
+              return <ListTableTd className="cell" data={data[v].name} />;
             default:
               return <ListTableTd className="cell" data={data[v]} />;
           }

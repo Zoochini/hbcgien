@@ -7,6 +7,7 @@ function Menu() {
 
   return (
     <div className="cms-menu">
+      <Link to={`${path}/pages`}>pages</Link>
       <Link to={`${path}/articles`}>articles</Link>
       <Link to={`${path}/inscriptions`}>inscriptions</Link>
       <Link to={`${path}/equipes`}>equipes</Link>

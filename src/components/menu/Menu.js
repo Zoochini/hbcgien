@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import "../../scss/module/menu.scss";
 import CollapseButton from "./CollapseButton";
+import SubPages from "./SubPages";
 
 function Menu() {
   const [collapsed, setCollapsed] = useState("notCollapsed");
   const [equipes, setEquipes] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [pages, setPages] = useState([]);
 
   //Fetching all the equipes
   const fetchEquipes = async () => {
@@ -33,9 +35,19 @@ function Menu() {
     res.json().then((res) => setCategories(res));
   };
 
+  //Fetching pages
+  const fetchPages = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URI}pages`, {
+      method: "GET",
+      headers: new Headers(),
+    });
+    res.json().then((res) => setPages(res));
+  };
+
   useEffect(() => {
     fetchCategories();
     fetchEquipes();
+    fetchPages();
   }, []);
 
   function handleClick(e) {
@@ -63,17 +75,7 @@ function Menu() {
           Accueil
         </Link>
         <Dropdown value="Club">
-          <div className="nav-col">
-            <Link to="/" className="nav-item">
-              Historique de l'association
-            </Link>
-            <Link to="/bbb" className="nav-item">
-              Le mot du président
-            </Link>
-            <Link to="/ccc" className="nav-item">
-              Le conseil d'administration
-            </Link>
-          </div>
+          <SubPages pages={pages} value="Club" />
         </Dropdown>
         <Dropdown value="Equipes">
           {/**
@@ -95,30 +97,10 @@ function Menu() {
           ))}
         </Dropdown>
         <Dropdown value="Infos pratiques">
-          <div className="nav-col">
-            <Link to="/inscription" className="nav-item">
-              S'inscrire
-            </Link>
-            <Link to="/" className="nav-item">
-              Qui contacter ?
-            </Link>
-            <Link to="/" className="nav-item">
-              Synchroniser un calendrier
-            </Link>
-          </div>
+          <SubPages pages={pages} value="Infos pratiques" />
         </Dropdown>
         <Dropdown value="Arbitrage">
-          <div className="nav-col">
-            <Link to="/" className="nav-item">
-              Devenez arbitre
-            </Link>
-            <Link to="/" className="nav-item">
-              Apprendre les gestes
-            </Link>
-            <Link to="/" className="nav-item">
-              Les arbitres du club
-            </Link>
-          </div>
+          <SubPages pages={pages} value="Arbitrage" />
         </Dropdown>
         <Link to="/actus" className="nav-item">
           Actualités

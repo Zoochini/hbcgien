@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import FormField from "./FormField";
-import FormFieldIndex from "./FormFieldIndex";
 import FormFieldJoditEditor from "./FormFieldJoditEditor";
 import FormSubmitButton from "./FormSubmitButton";
 import { accessToken } from "../../../utils";
@@ -20,6 +19,8 @@ export class FormPage extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.sendPage = this.sendPage.bind(this);
+    this.fetchPage = this.fetchPage.bind(this);
+    this.getIndex = this.getIndex.bind(this);
   }
 
   handleChange(e) {
@@ -71,26 +72,48 @@ export class FormPage extends Component {
     );
   }
 
-  componentDidMount() {
+  fetchPage() {
     let { schema, id } = this.props;
     if (id !== undefined)
       fetch(`${process.env.REACT_APP_API_URI}${schema}?id=${id}`)
         .then((res) => res.json())
         .then((res) => {
-          this.setState({ title: res.title, content: res.content, index: res.index });
+          this.setState({
+            title: res.title,
+            content: res.content,
+            index: res.index,
+          });
         });
+  }
+
+  getIndex() {
+    switch (this.props.index) {
+      case "club":
+        return process.env.REACT_APP_CLUB_ID;
+      case "infos":
+        return process.env.REACT_APP_INFOS_ID;
+      case "arbitrage":
+        return process.env.REACT_APP_ARBITRAGE_ID;
+      default:
+        return "";
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ index: this.getIndex() });
+    this.fetchPage();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.fetchPage();
+    }
   }
 
   render() {
     let { state } = this;
     return (
       <div className="form-row justify-content-between">
-        <FormFieldIndex
-          name="index"
-          label="Type"
-          value={state.index}
-          onChange={this.handleChange}
-        />
         <FormField
           name="title"
           label="Titre"

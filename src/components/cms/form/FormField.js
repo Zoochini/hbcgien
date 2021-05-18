@@ -2,6 +2,7 @@ import React from "react";
 import FormFieldCategorie from "./FormFieldCategorie";
 import FormFieldJoueurs from "./FormFieldJoueurs";
 import FormFieldJoditEditor from "./FormFieldJoditEditor";
+import FormFieldIndex from "./FormFieldIndex";
 
 export default function FormField(props) {
   let { name, label, value, onChange, onClick } = props;
@@ -136,6 +137,15 @@ export default function FormField(props) {
         <FormFieldJoditEditor
           name={name}
           label={label}
+          value={value}
+          onChange={onChange}
+        />
+      );
+    case "index":
+      return (
+        <FormFieldIndex
+          name="index"
+          label="Type"
           value={value}
           onChange={onChange}
         />

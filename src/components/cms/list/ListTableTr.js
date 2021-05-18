@@ -20,6 +20,7 @@ export class ListTableTr extends Component {
             case "content":
             case "file":
             case "ref":
+            case "index":
               break;
             case "dateNaissance":
             case "date":

@@ -4,7 +4,7 @@ import FormArticle from "./FormArticle";
 import FormEquipe from "./FormEquipe";
 import FormInscription from "./FormInscription";
 import FormLicencie from "./FormLicencie";
-import FormPage from "./FormPages";
+import FormPage from "./FormPage";
 import FormPartenaire from "./FormPartenaire";
 import FormProduit from "./FormProduit";
 
@@ -53,10 +53,15 @@ export class Form extends Component {
             <FormProduit schema={schema} id={id} />
           </form>
         );
+      case "accueil":
+      case "club":
+      case "infos":
+      case "arbitrage":
+      case "contact":
       case "pages":
         return (
           <form>
-            <FormPage schema={schema} id={id} />
+            <FormPage schema="pages" id={id} index={schema} />
           </form>
         );
       default:

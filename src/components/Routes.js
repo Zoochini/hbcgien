@@ -12,6 +12,7 @@ import NotFound from "./NotFound";
 import Gestion from "./cms/list/Gestion";
 import Form from "./cms/form/Form";
 import Login from "./cms/Login";
+import Page from "./Page";
 import { loggedIn } from "../utils.js";
 
 function PrivateRoute({ ...rest }) {
@@ -53,6 +54,7 @@ export const Routes = () => {
       <Route path="/__admin">
         <Admin />
       </Route>
+      <Route path="/:ref" component={Page}></Route>
       <Route component={NotFound} />
     </Switch>
   );

@@ -21,6 +21,7 @@ export class ListTableHeader extends Component {
                 case "content":
                 case "file":
                 case "ref":
+                case "index":
                   break;
                 case "nom":
                   return <ListTableTh data="Nom" />;

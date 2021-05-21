@@ -42,6 +42,9 @@ export class FormPage extends Component {
     let { title, content, index } = this.state;
     let { schema, id } = this.props;
 
+    //We tell the user the upload just starting
+    this.setState({ response: "pending" });
+
     let jsonToPost = {
       title: title,
       content: content,
@@ -59,17 +62,20 @@ export class FormPage extends Component {
       body: JSON.stringify(jsonToPost),
     };
 
-    fetch(
-      `${process.env.REACT_APP_API_URI}${schema}?id=${id}`,
-      requestOptions
-    ).then(
-      (res) =>
-        this.setState({
-          response: res._message !== undefined ? "Success !" : res._message,
-        }),
-      (err) =>
-        this.setState({ response: "Upload Error please verifiy connection" })
-    );
+    fetch(`${process.env.REACT_APP_API_URI}${schema}?id=${id}`, requestOptions)
+      .then((res) => res.json())
+      .then(
+        (res) =>
+          this.setState({
+            response:
+              res === undefined
+                ? "pending"
+                : res.errors !== undefined
+                ? res.message
+                : "success",
+          }),
+        (err) => this.setState({ response: "error" })
+      );
   }
 
   fetchPage() {

@@ -123,6 +123,36 @@
             inset 2px 2px 3px rgba(0, 0, 0, 0.6);
         }
       }
+
+      .response {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        text-transform: capitalize;
+
+        &.error {
+          color: red;
+          border: 3px solid red;
+          background-color: rgb(255, 136, 136, 0.5);
+        }
+
+        &.success {
+          color: green;
+          border: 3px solid green;
+          background-color: rgba(136, 255, 136, 0.5);
+        }
+
+        &.pending {
+          position: absolute;
+          display: inline-block;
+          border: 8px solid $ternary;
+          border-radius: 50%;
+          border-top: 8px solid $primary;
+          width: 48px;
+          height: 48px;
+          animation: spin 2s linear infinite;
+        }
+      }
     }
 
     &.cms-login {

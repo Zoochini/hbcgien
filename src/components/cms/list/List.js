@@ -94,7 +94,7 @@ export class List extends Component {
   render() {
     let { deleteItem } = this;
     let { data } = this.state;
-    let { schema } = this.getSchema();
+    let schema = this.getSchema();
 
     return (
       <ListTable data={data} deleteFunction={deleteItem} schema={schema} />

@@ -39,6 +39,10 @@ export class FormPartenaire extends Component {
   sendPartenaire() {
     let { name, url, image } = this.state;
     let { schema, id } = this.props;
+
+    //We tell the user the upload just starting
+    this.setState({ response: "pending" });
+
     let formData = new FormData();
 
     formData.append("name", name);
@@ -51,13 +55,18 @@ export class FormPartenaire extends Component {
       method: id !== undefined ? "PUT" : "POST",
       headers: headers,
       body: formData,
-    }).then(
+    }).then((res) => res.json())
+    .then(
       (res) =>
         this.setState({
-          response: res._message !== undefined ? "Success !" : res._message,
+          response:
+            res === undefined
+              ? "pending"
+              : res.errors !== undefined
+              ? res.message
+              : "success",
         }),
-      (err) =>
-        this.setState({ response: "Upload Error please verifiy connection" })
+      (err) => this.setState({ response: "error" })
     );
   }
 

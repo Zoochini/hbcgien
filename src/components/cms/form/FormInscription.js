@@ -34,6 +34,10 @@ export class FormInscription extends Component {
   postInscription() {
     let { name, file } = this.state;
     let { schema } = this.props;
+
+    //We tell the user the upload just starting
+    this.setState({ response: "pending" });
+
     let formData = new FormData();
 
     formData.append("name", name);
@@ -45,13 +49,18 @@ export class FormInscription extends Component {
       method: "POST",
       headers: headers,
       body: formData,
-    }).then(
+    }).then((res) => res.json())
+    .then(
       (res) =>
         this.setState({
-          response: res._message !== undefined ? "Success !" : res._message,
+          response:
+            res === undefined
+              ? "pending"
+              : res.errors !== undefined
+              ? res.message
+              : "success",
         }),
-      (err) =>
-        this.setState({ response: "Upload Error please verifiy connection" })
+      (err) => this.setState({ response: "error" })
     );
   }
 

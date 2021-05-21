@@ -96,6 +96,10 @@ export class FormLicencie extends Component {
   sendLicencie() {
     let { schema, id } = this.props;
     let { state } = this;
+
+    //We tell the user the upload just starting
+    this.setState({ response: "pending" });
+
     let tel = [];
     if (state.portable !== "")
       tel.push({ type: "portable", num: state.portable });
@@ -134,15 +138,19 @@ export class FormLicencie extends Component {
       headers: headers,
       body: JSON.stringify(jsonToPost),
     })
-      .then((res) => res.json())
-      .then(
-        (res) =>
-          this.setState({
-            response: res._message !== undefined ? "Success !" : res._message,
-          }),
-        (err) =>
-          this.setState({ response: "Upload Error please verifiy connection" })
-      );
+    .then((res) => res.json())
+    .then(
+      (res) =>
+        this.setState({
+          response:
+            res === undefined
+              ? "pending"
+              : res.errors !== undefined
+              ? res.message
+              : "success",
+        }),
+      (err) => this.setState({ response: "error" })
+    );
   }
 
   componentDidMount() {

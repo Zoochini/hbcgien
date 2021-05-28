@@ -19,8 +19,8 @@
   }
 
   .facebookPage {
-      width: calc(100%);
-      height: 480px;
+    width: calc(100%);
+    height: 480px;
   }
 
   .news {
@@ -104,6 +104,67 @@
           background-color: $primary;
           transition: width 0.5s ease-out;
         }
+      }
+    }
+  }
+
+  .carousel {
+    height: 200px;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+      @include noEffectButton;
+      position: absolute;
+      cursor: pointer;
+      color: $primary;
+      opacity: $opacity-3;
+      border-radius: 25px;
+      font-size: 2rem;
+      height: 32px;
+      width: 32px;
+      line-height: 24px;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      top: 100px - 16px;
+
+      &.left-button {
+        left: 5px;
+      }
+
+      &.right-button {
+        right: 5px;
+      }
+    }
+
+    .partenaire {
+      transition: all 0.5s;
+      align-self: center;
+      img {
+        max-height: 200px;
+        width: 100%;
+      }
+
+      &.slide-in-left {
+        animation: slide-in-left 0.5s;
+      }
+
+      &.slide-out-left {
+        animation: slide-out-left 0.5s;
+      }
+
+      &.slide-in-right {
+        animation: slide-in-right 0.5s;
+      }
+
+      &.slide-out-right {
+        animation: slide-out-right 0.5s;
       }
     }
   }

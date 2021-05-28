@@ -70,8 +70,8 @@ export class FormPage extends Component {
             response:
               res === undefined
                 ? "pending"
-                : res.errors !== undefined
-                ? res.message
+                : res.errors !== undefined || res.name !== undefined
+                ? res.name
                 : "success",
           }),
         (err) => this.setState({ response: "error" })
@@ -100,6 +100,8 @@ export class FormPage extends Component {
         return process.env.REACT_APP_INFOS_ID;
       case "arbitrage":
         return process.env.REACT_APP_ARBITRAGE_ID;
+      case "boutique":
+        return process.env.REACT_APP_BOUTIQUE_ID
       default:
         return "";
     }

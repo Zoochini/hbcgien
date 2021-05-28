@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import Layout from "../Layout";
+import DownloadLink from "../DownloadLink";
 import "../../scss/module/inscriptions.scss";
 
 export class Inscription extends Component {
@@ -9,7 +10,6 @@ export class Inscription extends Component {
     this.state = {
       inscriptions: [],
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -22,39 +22,17 @@ export class Inscription extends Component {
       );
   }
 
-  handleClick(e) {
-    let { inscriptions } = this.state;
-    const id = e.target.id;
-    const inscription = inscriptions.find((v) => id === v._id);
-    const file =
-      inscription !== undefined
-        ? `data:${inscription.file.contentType};base64, ${inscription.file.data}`
-        : "";
-    let a = document.createElement("a");
-    a.href = file;
-    a.download = inscription.name;
-    a.click();
-  }
-
   render() {
     let { inscriptions } = this.state;
     return (
-      <Layout className="inscriptions">
-        <h1>Inscriptions</h1>
-        {inscriptions.map((inscription) => {
-          return (
-            <a
-              key={inscription._id}
-              href="#"
-              target="_blank"
-              download={inscription.name}
-              onClick={this.handleClick}
-            >
-              <h2 id={inscription._id}>{inscription.name}</h2>
-            </a>
-          );
-        })}
-      </Layout>
+      <div className="row">
+        <div className="col">
+          <h3>Document(s)</h3>
+          {inscriptions.map((inscription) => {
+            return <DownloadLink value={inscription} />;
+          })}
+        </div>
+      </div>
     );
   }
 }

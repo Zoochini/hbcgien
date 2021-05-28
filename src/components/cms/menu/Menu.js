@@ -18,12 +18,14 @@ function Menu() {
       <Link to={`${path}/arbitrage`}>arbitrage</Link>
       <Link to={`${path}/articles`}>actualités</Link>
       <Link to={`${path}/partenaires`}>partenaires</Link>
-      <Link to={`${path}/produits`}>boutique</Link>
+      <Link to={`${path}/boutique/${process.env.REACT_APP_BOUTIQUE_ID}`}>
+        boutique
+      </Link>
       <Link to={`${path}/contact/${process.env.REACT_APP_CONTACT_ID}`}>
         contact
       </Link>
-      <Link to={`${path}/licencies`}>licencies</Link>
       <Link to={`${path}/inscriptions`}>inscriptions</Link>
+      <Link to={`${path}/produits`}>produits</Link>
     </div>
   );
 }

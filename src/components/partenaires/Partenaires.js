@@ -29,6 +29,7 @@ export class Partenaires extends Component {
           {partenaires.map((v) => {
             return (
               <Partenaire
+                className="col-lg-4 col my-2 text-center partenaire"
                 name={v.name}
                 link={v.url}
                 src={`data:${v.image.contentType};base64, ${v.image.data}`}

@@ -1,62 +1,52 @@
 import React, { Component } from "react";
 import FormField from "./FormField";
-import { dataURLtoFile } from "./utility";
 import FormSubmitButton from "./FormSubmitButton";
 import { accessToken } from "../../../utils";
+
 export class FormProduit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      nom: "",
-      prixBase: "",
-      prixClub: "",
-      image: null,
+      name: "",
+      file: null,
       response: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.postProduit = this.sendEquipe.bind(this);
+    this.postProduit = this.postProduit.bind(this);
   }
 
   handleChange(e) {
     let element = e.target;
     switch (element.name) {
-      case "nom":
-        this.setState({ nom: element.value });
+      case "name":
+        this.setState({ name: element.value });
         break;
-      case "prixBase":
-        this.setState({ prixBase: element.value });
-        break;
-      case "prixClub":
-        this.setState({ prixClub: element.value });
-        break;
-      case "image":
-        this.setState({ image: element.files[0] });
+      case "file":
+        this.setState({ file: element.files[0] });
         break;
       default:
         break;
     }
   }
 
-  sendEquipe() {
-    let { nom, prixBase, prixClub, image } = this.state;
-    let { schema, id } = this.props;
+  postProduit() {
+    let { name, file } = this.state;
+    let { schema } = this.props;
 
     //We tell the user the upload just starting
     this.setState({ response: "pending" });
 
     let formData = new FormData();
 
-    formData.append("nom", nom);
-    formData.append("prixBase", prixBase);
-    formData.append("prixClub", prixClub);
-    formData.append("image", image);
+    formData.append("name", name);
+    formData.append("file", file);
 
     let headers = new Headers({ Authorization: accessToken() });
 
-    fetch(`${process.env.REACT_APP_API_URI}${schema}?id=${id}`, {
-      method: id !== undefined ? "PUT" : "POST",
+    fetch(`${process.env.REACT_APP_API_URI}${schema}`, {
+      method: "POST",
       headers: headers,
       body: formData,
     }).then((res) => res.json())
@@ -74,54 +64,26 @@ export class FormProduit extends Component {
     );
   }
 
-  componentDidMount() {
-    let { schema, id } = this.props;
-    if (id !== undefined)
-      fetch(`${process.env.REACT_APP_API_URI}${schema}?id=${id}`)
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          this.setState({
-            nom: res.nom,
-            prixBase: res.prixBase,
-            prixClub: res.prixClub,
-            image: dataURLtoFile(
-              `data:${res.image.contentType};base64,${res.image.data}`,
-              "image"
-            ),
-          });
-        });
-  }
-
   render() {
     let { state } = this;
     return (
       <div className="form-row justify-content-between">
         <FormField
-          name="nom"
+          name="name"
           label="Nom"
-          value={state.nom}
+          value={state.name}
           onChange={this.handleChange}
         />
         <FormField
-          name="prixBase"
-          label="Prix de base"
-          value={state.prixBase}
+          name="file"
+          label="Pdf des produits"
+          value={state.file}
           onChange={this.handleChange}
         />
-        <FormField
-          name="prixClub"
-          label="Prix club"
-          value={state.prixClub}
-          onChange={this.handleChange}
+        <FormSubmitButton
+          response={state.response}
+          onClick={this.postProduit}
         />
-        <FormField
-          name="image"
-          label="Image"
-          value={state.image}
-          onChange={this.handleChange}
-        />
-        <FormSubmitButton response={state.response} onClick={this.sendEquipe} />
       </div>
     );
   }

@@ -3,7 +3,6 @@ import CMSLayout from "../CMSLayout";
 import FormArticle from "./FormArticle";
 import FormEquipe from "./FormEquipe";
 import FormInscription from "./FormInscription";
-import FormLicencie from "./FormLicencie";
 import FormPage from "./FormPage";
 import FormPartenaire from "./FormPartenaire";
 import FormProduit from "./FormProduit";
@@ -35,12 +34,6 @@ export class Form extends Component {
             <FormInscription schema={schema} id={id} />
           </form>
         );
-      case "licencies":
-        return (
-          <form>
-            <FormLicencie schema={schema} id={id} />
-          </form>
-        );
       case "partenaires":
         return (
           <form>
@@ -57,6 +50,7 @@ export class Form extends Component {
       case "club":
       case "infos":
       case "arbitrage":
+      case "boutique":
       case "contact":
       case "pages":
         return (

@@ -5,6 +5,7 @@ import Layout from "../Layout";
 import FacebookPage from "./FacebookPage";
 import News from "./News";
 import "../../scss/module/accueil.scss";
+import Carousel from "./Carousel";
 
 export class Accueil extends Component {
   constructor(props) {
@@ -29,12 +30,12 @@ export class Accueil extends Component {
   render() {
     return (
       <Layout className="accueil">
-        {/*<Carousel id="accueil-carousel" />*/}
         <div className="row justify-content-center">
           {parse(marked(this.state.content))}
         </div>
         <div className="row">
           <News />
+          <Carousel />
           <FacebookPage />
         </div>
       </Layout>

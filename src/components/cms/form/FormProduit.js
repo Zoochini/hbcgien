@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FormField from "./FormField";
 import FormSubmitButton from "./FormSubmitButton";
-import { accessToken } from "../../../utils";
+import { accessToken, handleUploadError } from "../../../utils";
 
 export class FormProduit extends Component {
   constructor(props) {
@@ -49,19 +49,20 @@ export class FormProduit extends Component {
       method: "POST",
       headers: headers,
       body: formData,
-    }).then((res) => res.json())
-    .then(
-      (res) =>
-        this.setState({
-          response:
-            res === undefined
-              ? "pending"
-              : res.errors !== undefined
-              ? res.message
-              : "success",
-        }),
-      (err) => this.setState({ response: "error" })
-    );
+    })
+      .then((res) => res.json())
+      .then(
+        (res) =>
+          this.setState({
+            response:
+              res === undefined
+                ? "pending"
+                : res.errors !== undefined || res.name !== undefined
+                ? handleUploadError(res.name)
+                : "success",
+          }),
+        (err) => this.setState({ response: "error" })
+      );
   }
 
   render() {

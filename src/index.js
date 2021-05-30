@@ -2,11 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+//The two next import is here to gain the ability to use bootstrap on this project
+// eslint-disable-next-line
 import $ from "jquery";
+// eslint-disable-next-line
 import Popper from "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./scss/style.scss";
-
 
 ReactDOM.render(
   <React.StrictMode>

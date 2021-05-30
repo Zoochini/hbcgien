@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Menu() {
-  //NEED TO PROPER CHANGE
+  //To change if you want to access the cms by another route
   const path = "/__admin";
-
-  const [indexs, setIndexs] = useState([]);
 
   return (
     <div className="cms-menu">

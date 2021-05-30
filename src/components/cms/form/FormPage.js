@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FormField from "./FormField";
 import FormFieldJoditEditor from "./FormFieldJoditEditor";
 import FormSubmitButton from "./FormSubmitButton";
-import { accessToken } from "../../../utils";
+import { accessToken, handleUploadError } from "../../../utils";
 
 export class FormPage extends Component {
   constructor(props) {
@@ -71,7 +71,7 @@ export class FormPage extends Component {
               res === undefined
                 ? "pending"
                 : res.errors !== undefined || res.name !== undefined
-                ? res.name
+                ? handleUploadError(res.name)
                 : "success",
           }),
         (err) => this.setState({ response: "error" })
@@ -101,7 +101,7 @@ export class FormPage extends Component {
       case "arbitrage":
         return process.env.REACT_APP_ARBITRAGE_ID;
       case "boutique":
-        return process.env.REACT_APP_BOUTIQUE_ID
+        return process.env.REACT_APP_BOUTIQUE_ID;
       default:
         return "";
     }

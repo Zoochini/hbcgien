@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 const DownloadLink = (props) => {
-  const [content, setContent] = useState(props.value);
+  const content = props.value;
 
   const handleClick = () => {
     const aFile =
@@ -17,7 +17,7 @@ const DownloadLink = (props) => {
   return (
     <a
       key={content._id}
-      href="#"
+      href="#top"
       target="_blank"
       download={content.name}
       onClick={handleClick}

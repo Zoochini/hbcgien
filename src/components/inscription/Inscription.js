@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
-import Layout from "../Layout";
+import React, { Component } from "react";
 import DownloadLink from "../DownloadLink";
 import "../../scss/module/inscriptions.scss";
 

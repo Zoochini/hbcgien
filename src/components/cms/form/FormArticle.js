@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FormField from "./FormField";
 import FormFieldJoditEditor from "./FormFieldJoditEditor";
 import FormSubmitButton from "./FormSubmitButton";
-import { accessToken } from "../../../utils";
+import { accessToken, handleUploadError } from "../../../utils";
 
 export class FormArticle extends Component {
   constructor(props) {
@@ -55,22 +55,20 @@ export class FormArticle extends Component {
       body: JSON.stringify(jsonToPost),
     };
 
-    fetch(
-      `${process.env.REACT_APP_API_URI}${schema}?id=${id}`,
-      requestOptions
-    ).then((res) => res.json())
-    .then(
-      (res) =>
-        this.setState({
-          response:
-            res === undefined
-              ? "pending"
-              : res.errors !== undefined
-              ? res.message
-              : "success",
-        }),
-      (err) => this.setState({ response: "error" })
-    );
+    fetch(`${process.env.REACT_APP_API_URI}${schema}?id=${id}`, requestOptions)
+      .then((res) => res.json())
+      .then(
+        (res) =>
+          this.setState({
+            response:
+              res === undefined
+                ? "pending"
+                : res.errors !== undefined || res.name !== undefined
+                ? handleUploadError(res.name)
+                : "success",
+          }),
+        (err) => this.setState({ response: "error" })
+      );
   }
 
   componentDidMount() {

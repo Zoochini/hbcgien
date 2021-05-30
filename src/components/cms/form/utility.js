@@ -11,5 +11,4 @@ const dataURLtoFile = (dataurl, filename) => {
 
   return new File([u8arr], filename, { type: mime });
 };
-
 exports.dataURLtoFile = dataURLtoFile;

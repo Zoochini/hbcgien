@@ -4,6 +4,7 @@ function FacebookPage() {
   return (
     <div className="col-lg">
       <iframe
+        title="facebook"
         className="facebookPage"
         src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/HandballGienLoiret/&tabs=timeline&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
         scrolling="no"

@@ -1,7 +1,5 @@
 import React from "react";
-import Footer from "./footer/Footer";
 import Layout from "./Layout";
-import Menu from "./menu/Menu";
 import "../scss/module/notFound.scss";
 
 

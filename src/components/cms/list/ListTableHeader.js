@@ -22,7 +22,7 @@ export class ListTableHeader extends Component {
                 case "file":
                 case "ref":
                 case "index":
-                  break;
+                  return null;
                 case "nom":
                   return <ListTableTh data="Nom" />;
                 case "prenom":
@@ -47,8 +47,6 @@ export class ListTableHeader extends Component {
                   return <ListTableTh data="Offre Com" />;
                 case "title":
                   return <ListTableTh data="Titre" />;
-                case "index":
-                  return <ListTableTh data="Type" />;
                 default:
                   return <ListTableTh data={v} />;
               }

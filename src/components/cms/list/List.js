@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ListTable from "./ListTable";
 import { accessToken } from "../../../utils";
+import Loading from "../../Loading";
 
 export class List extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ export class List extends Component {
       .then((res) => res.json())
       .then(
         (res) => {
-          this.setState({ data: res });
+          this.setState({ data: res, response: "ok" });
         },
         (err) => {
           console.log("Error fetch : " + err);
@@ -93,10 +94,12 @@ export class List extends Component {
 
   render() {
     let { deleteItem } = this;
-    let { data } = this.state;
+    let { data, response } = this.state;
     let schema = this.getSchema();
 
-    return (
+    return response === "" ? (
+      <Loading />
+    ) : (
       <ListTable data={data} deleteFunction={deleteItem} schema={schema} />
     );
   }

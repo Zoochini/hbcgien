@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FormField from "./FormField";
 import { dataURLtoFile } from "./utility";
 import FormSubmitButton from "./FormSubmitButton";
-import { accessToken } from "../../../utils";
+import { accessToken, handleUploadError } from "../../../utils";
 
 export class FormEquipe extends Component {
   constructor(props) {
@@ -83,11 +83,11 @@ export class FormEquipe extends Component {
       (res) =>
         this.setState({
           response:
-            res === undefined
-              ? "pending"
-              : res.errors !== undefined
-              ? res.message
-              : "success",
+              res === undefined
+                ? "pending"
+                : res.errors !== undefined || res.name !== undefined
+                ? handleUploadError(res.name)
+                : "success",
         }),
       (err) => this.setState({ response: "error" })
     );

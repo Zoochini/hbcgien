@@ -31,7 +31,7 @@ export class Footer extends Component {
           </svg>
           <span>@handballclubgienloiret</span>
         </a>
-        <a>
+        <a id="telephone" href="#top" style={{ pointerEvents: "none" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -42,7 +42,7 @@ export class Footer extends Component {
           </svg>
           <span>02.38.67.03.22</span>
         </a>
-        <a>
+        <a id="mail" href="#top" style={{ pointerEvents: "none" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

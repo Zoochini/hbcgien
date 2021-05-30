@@ -61,10 +61,8 @@ export class Login extends Component {
       }, 3000);
   }
 
-
-
   render() {
-    let { username, password, response, access_token } = this.state;
+    let { username, password, response } = this.state;
     return !loggedIn() ? (
       <CMSLayout className="cms-login">
         <label for="username">Utilisateur :</label>

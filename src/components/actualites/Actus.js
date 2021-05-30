@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import Pagination from "../pagination/Pagination";
 import Actu from "./Actu";
-import Menu from "../menu/Menu";
 import Layout from "../Layout";
 import "../../scss/module/actus.scss";
 
-import DATA from "../../test/data.js";
-
 export class Actus extends Component {
-  /**
-   * Replace articles by : [] and nbPages by 0
-   */
   constructor(props) {
     super(props);
     this.state = {

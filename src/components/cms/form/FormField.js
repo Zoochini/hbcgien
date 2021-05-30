@@ -94,6 +94,8 @@ export default function FormField(props) {
     case "numLicencie":
     case "prixBase":
     case "prixClub":
+    case "score1":
+    case "score2":
       return (
         <div className="form-group col-lg-3">
           <label for={name}>{label} :</label>

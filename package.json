@@ -4,7 +4,7 @@
   },
   "name": "hbcgien",
   "homepage": "http://141.136.42.48/",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@primer/octicons-react": "^11.3.0",

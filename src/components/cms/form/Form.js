@@ -6,6 +6,7 @@ import FormInscription from "./FormInscription";
 import FormPage from "./FormPage";
 import FormPartenaire from "./FormPartenaire";
 import FormProduit from "./FormProduit";
+import FormScore from "./FormScore";
 
 export class Form extends Component {
   constructor(props) {
@@ -44,6 +45,12 @@ export class Form extends Component {
         return (
           <form>
             <FormProduit schema={schema} id={id} />
+          </form>
+        );
+      case "scores":
+        return (
+          <form>
+            <FormScore schema={schema} id={id} />
           </form>
         );
       case "accueil":

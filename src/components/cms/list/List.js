@@ -38,6 +38,8 @@ export class List extends Component {
         return process.env.REACT_APP_INFOS_ID;
       case "arbitrage":
         return process.env.REACT_APP_ARBITRAGE_ID;
+      case "scores":
+        return process.env.REACT_APP_SCORE_ID;
       default:
         return "";
     }

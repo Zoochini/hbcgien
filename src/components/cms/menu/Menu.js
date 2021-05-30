@@ -24,6 +24,9 @@ function Menu() {
       </Link>
       <Link to={`${path}/inscriptions`}>inscriptions</Link>
       <Link to={`${path}/produits`}>produits</Link>
+      <Link to={`${path}/scores/${process.env.REACT_APP_SCORE_ID}`}>
+        scores
+      </Link>
     </div>
   );
 }

@@ -83,9 +83,6 @@ export default class Carousel extends Component {
 
   render() {
     let { content, index, animation } = this.state;
-    console.log("intervalID " + this.state.intervalId);
-    console.log("animation  " + this.state.animation);
-    console.log("index " + index);
     return (
       <div className="carousel col-lg-5">
         <button className="left-button" onClick={this.handleClick} value="left">

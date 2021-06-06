@@ -61,8 +61,9 @@ export class List extends Component {
   }
 
   deleteItem(e) {
-    let { schema } = this.getSchema();
+    let schema = this.getSchema();
     let { id } = e.target.dataset;
+    console.log(e.target.dataset);
     let headers = new Headers({ Authorization: accessToken() });
     fetch(`${process.env.REACT_APP_API_URI}${schema}?id=${id}`, {
       method: "DELETE",

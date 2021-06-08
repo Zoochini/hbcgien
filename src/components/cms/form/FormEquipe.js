@@ -1,23 +1,24 @@
 import React, { Component } from "react";
 import FormField from "./FormField";
-import { dataURLtoFile } from "./utility";
 import FormSubmitButton from "./FormSubmitButton";
+import FormFieldJoditEditor from "./FormFieldJoditEditor";
 import { accessToken, handleUploadError } from "../../../utils";
 
 export class FormEquipe extends Component {
   constructor(props) {
     super(props);
 
+    this.content = React.createRef();
+
     this.state = {
       label: "",
       categorie: "",
       image: null,
-      joueurs: [],
+      content: "",
       response: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.deleteJoueur = this.deleteJoueur.bind(this);
     this.sendEquipe = this.sendEquipe.bind(this);
   }
 
@@ -33,31 +34,17 @@ export class FormEquipe extends Component {
       case "image":
         this.setState({ image: element.files[0] });
         break;
-      case "joueurs":
-        if (this.state.joueurs.find((e) => e === element.value) !== undefined)
-          break;
-        let array = this.state.joueurs.slice();
-        array.push(element.value);
-        this.setState({
-          joueurs: array,
-        });
+      case "content":
+        this.setState({ content: element.innerHTML });
         break;
       default:
+        this.setState({ content: element.innerHTML });
         break;
     }
   }
 
-  deleteJoueur(e) {
-    let array = this.state.joueurs.slice();
-    array.splice(
-      array.findIndex((v) => v === e.target.value),
-      1
-    );
-    this.setState({ joueurs: array });
-  }
-
   sendEquipe() {
-    let { label, categorie, joueurs, image } = this.state;
+    let { label, categorie, content, image } = this.state;
     let { schema, id } = this.props;
 
     //We tell the user the upload just starting
@@ -67,10 +54,8 @@ export class FormEquipe extends Component {
 
     formData.append("label", label);
     formData.append("categorie", categorie);
-    for (let i = 0; i < joueurs.length; i++) {
-      formData.append(`joueurs[${i}]`, joueurs[i]);
-    }
     formData.append("image", image);
+    formData.append("content", content);
 
     let headers = new Headers({ Authorization: accessToken() });
 
@@ -78,19 +63,20 @@ export class FormEquipe extends Component {
       method: id !== undefined ? "PUT" : "POST",
       headers: headers,
       body: formData,
-    }).then((res) => res.json())
-    .then(
-      (res) =>
-        this.setState({
-          response:
+    })
+      .then((res) => res.json())
+      .then(
+        (res) =>
+          this.setState({
+            response:
               res === undefined
                 ? "pending"
                 : res.errors !== undefined || res.name !== undefined
                 ? handleUploadError(res.name)
                 : "success",
-        }),
-      (err) => this.setState({ response: "error" })
-    );
+          }),
+        (err) => this.setState({ response: "error" })
+      );
   }
 
   componentDidMount() {
@@ -103,11 +89,7 @@ export class FormEquipe extends Component {
           this.setState({
             label: res.label,
             categorie: res.categorie,
-            image: dataURLtoFile(
-              `data:${res.image.contentType};base64,${res.image.data}`,
-              "image"
-            ),
-            joueurs: res.joueurs,
+            content: res.content,
           });
         });
   }
@@ -135,12 +117,12 @@ export class FormEquipe extends Component {
           value={state.image}
           onChange={this.handleChange}
         />
-        <FormField
-          name="joueurs"
-          label="Joueurs"
-          value={state.joueurs}
+        <FormFieldJoditEditor
+          ref={this.content}
+          name="content"
+          label="Contenu"
+          value={state.content}
           onChange={this.handleChange}
-          onClick={this.deleteJoueur}
         />
         <FormSubmitButton response={state.response} onClick={this.sendEquipe} />
       </div>

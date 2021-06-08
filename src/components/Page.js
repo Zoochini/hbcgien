@@ -40,7 +40,6 @@ const Page = (props) => {
   switch (props.match.params.ref) {
     case null:
       return <NotFound />;
-    //TO DO___________________________________________________________
     case "inscription":
       return (
         <Layout>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Joueur from "./Joueur";
 import Layout from "../Layout";
+import marked from "marked";
+import parse from "html-react-parser";
 import "../../scss/module/equipe.scss";
 
 export class Equipe extends Component {
@@ -8,8 +9,8 @@ export class Equipe extends Component {
     super(props);
     this.state = {
       label: "",
-      joueurs: [],
       image: null,
+      content: "",
     };
     this.fetchEquipe = this.fetchEquipe.bind(this);
   }
@@ -23,9 +24,9 @@ export class Equipe extends Component {
         .then((res) => {
           this.setState({
             label: res.label,
-            joueurs: res.joueurs,
             image:
               "data:" + res.image.contentType + ";base64," + res.image.data,
+            content: res.content !== undefined ? res.content : "",
           });
         });
   }
@@ -41,17 +42,15 @@ export class Equipe extends Component {
   }
 
   render() {
-    let { joueurs, image, label } = this.state;
+    let { image, label, content } = this.state;
     return (
       <Layout className="equipe">
         <div className="img-card row-cols">
           <img src={image} alt="équipe"></img>
           <h1 className="label">{label}</h1>
         </div>
-        <div className="joueurs row">
-          {joueurs.map((v) => {
-            return <Joueur value={v} />;
-          })}
+        <div className="row">
+          <div className="col">{parse(marked(content))}</div>
         </div>
       </Layout>
     );

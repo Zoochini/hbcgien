@@ -5,7 +5,9 @@ const DownloadLink = (props) => {
 
   const handleClick = () => {
     const aFile =
-      content !== undefined ? `data:${content.file.contentType};base64, ${content.file.data}` : "";
+      content !== undefined
+        ? `data:${content.file.contentType};base64, ${content.file.data}`
+        : "";
     let a = document.createElement("a");
     a.href = aFile;
     a.download = content.name;
@@ -21,6 +23,7 @@ const DownloadLink = (props) => {
       target="_blank"
       download={content.name}
       onClick={handleClick}
+      style={{ width: "fit-content" }}
     >
       <h2 id={content._id}>{content.name}</h2>
     </a>

@@ -41,32 +41,24 @@
       transition: all 0.3s;
       background-color: rgba($primary, $opacity-4);
       color: $secondary;
-      font-size: 1.5rem;
+      font-size: 1rem;
       padding: 1rem;
       margin-top: 1px;
       margin-bottom: 1px;
       text-decoration: none;
-      text-overflow: ellipsis;
       overflow: hidden;
 
       * {
         display: inline-block;
         vertical-align: middle;
         height: 1.5rem;
-        white-space: nowrap;
+        white-space: pre-wrap;
         max-width: calc(100% - 1rem - 1px);
         overflow: hidden;
-        text-overflow: ellipsis;
-        &::before {
-          content: "";
-          display: block;
-          position: relative;
-          height: 1px;
-          width: 100%;
-          overflow: visible;
-          top: 38px;
-          background-color: black;
-        }
+      }
+
+      span {
+        height: 2.2rem;
       }
 
       &::before {
@@ -76,7 +68,7 @@
         height: 1px;
         width: 0%;
         overflow: visible;
-        top: 46px;
+        top: 47px;
         background-color: $primary;
       }
 
@@ -86,12 +78,6 @@
         fill: $primary;
         svg {
           transition: transform 0.5s ease-out;
-          /*
-          -webkit-transform: translateX(32px);
-          -moz-transform: translateX(32px);
-          -ms-transform: translateX(32px);
-          -o-transform: translateX(32px);
-          */
           transform: translateX(calc(100%));
         }
         &::before {
@@ -100,7 +86,7 @@
           position: relative;
           height: 1px;
           width: 100%;
-          top: 46px;
+          top: 47px;
           background-color: $primary;
           transition: width 0.5s ease-out;
         }

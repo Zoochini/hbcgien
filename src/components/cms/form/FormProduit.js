@@ -8,7 +8,7 @@ export class FormProduit extends Component {
     super(props);
 
     this.state = {
-      name: "",
+      label: "",
       file: null,
       response: "",
     };
@@ -19,9 +19,9 @@ export class FormProduit extends Component {
 
   handleChange(e) {
     let element = e.target;
-    switch (element.name) {
-      case "name":
-        this.setState({ name: element.value });
+    switch (element.label) {
+      case "label":
+        this.setState({ label: element.value });
         break;
       case "file":
         this.setState({ file: element.files[0] });
@@ -32,7 +32,7 @@ export class FormProduit extends Component {
   }
 
   postProduit() {
-    let { name, file } = this.state;
+    let { label, file } = this.state;
     let { schema } = this.props;
 
     //We tell the user the upload just starting
@@ -40,7 +40,7 @@ export class FormProduit extends Component {
 
     let formData = new FormData();
 
-    formData.append("name", name);
+    formData.append("label", label);
     formData.append("file", file);
 
     let headers = new Headers({ Authorization: accessToken() });
@@ -57,8 +57,8 @@ export class FormProduit extends Component {
             response:
               res === undefined
                 ? "pending"
-                : res.errors !== undefined || res.name !== undefined
-                ? handleUploadError(res.name)
+                : res.errors !== undefined || res.label !== undefined
+                ? handleUploadError(res.label)
                 : "success",
           }),
         (err) => this.setState({ response: "error" })
@@ -70,14 +70,14 @@ export class FormProduit extends Component {
     return (
       <div className="form-row justify-content-between">
         <FormField
-          name="name"
-          label="Nom"
-          value={state.name}
+          label="label"
+          name="Nom"
+          value={state.label}
           onChange={this.handleChange}
         />
         <FormField
-          name="file"
-          label="Pdf des produits"
+          label="file"
+          name="Pdf des produits"
           value={state.file}
           onChange={this.handleChange}
         />

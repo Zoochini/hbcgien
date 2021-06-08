@@ -31,7 +31,7 @@ export class Accueil extends Component {
     return (
       <Layout className="accueil">
         <div className="row justify-content-center">
-          {parse(marked(this.state.content))}
+          <div className="col">{parse(marked(this.state.content))}</div>
         </div>
         <div className="row">
           <News />

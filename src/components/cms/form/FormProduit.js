@@ -19,7 +19,7 @@ export class FormProduit extends Component {
 
   handleChange(e) {
     let element = e.target;
-    switch (element.label) {
+    switch (element.name) {
       case "label":
         this.setState({ label: element.value });
         break;
@@ -70,14 +70,14 @@ export class FormProduit extends Component {
     return (
       <div className="form-row justify-content-between">
         <FormField
-          label="label"
-          name="Nom"
+          label="Nom"
+          name="label"
           value={state.label}
           onChange={this.handleChange}
         />
         <FormField
-          label="file"
-          name="Pdf des produits"
+          label="Fichier Pdf"
+          name="file"
           value={state.file}
           onChange={this.handleChange}
         />
